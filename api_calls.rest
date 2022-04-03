@@ -10,3 +10,16 @@ GET http://localhost:3000/
 
 
 GET http://localhost:3000/task
+###
+
+
+GET http://localhost:3000/task/6249cea973468362dedd0197
+
+###
+POST http://localhost:3000/task
+Content-Type: application/json
+
+{
+    "message": "This is my new taskaas",
+    "amount": 180
+}

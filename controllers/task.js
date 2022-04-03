@@ -1,5 +1,54 @@
-const getTasks = async (req, res, next) => {
-    res.send('This is my Tasks')
-}
+const Task = require("../models/task_model");
 
-module.exports = { getTasks }
+const getTasks = async (req, res, next) => {
+  console.log("getTasks");
+
+  try {
+    tasks = await Task.find();
+    res.status(200).send(tasks);
+  } catch (err) {
+    res.status(400).send({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+const getTasksById = async (req, res, next) => {
+    console.log("getTasksById");
+  
+    try {
+      tasks = await Task.findById(req.params.id);
+      res.status(200).send(tasks);
+    } catch (err) {
+      res.status(400).send({
+        status: "fail",
+        message: err.message,
+      });
+    }
+  };
+
+const addTasks = async (req, res, next) => {
+  console.log("addTasks");
+
+  const newTask = Task({
+    message: req.body.message,
+    amount: req.body.amount,
+  });
+
+  try {
+    task = await newTask.save();
+
+    res.status(200).send({
+      status: "Ok",
+      task: newTask,
+    });
+  } catch (err) {
+    res.status(400).send({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+module.exports = { getTasks, getTasksById, addTasks };
