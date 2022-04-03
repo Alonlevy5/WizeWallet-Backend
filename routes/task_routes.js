@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const Post = require('../controllers/posts')
+const Task = require('../controllers/task')
 
-router.get('/',Post.getPosts)
+router.get('/',Task.getTasks)
 
 module.exports = router

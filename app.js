@@ -13,8 +13,8 @@ const port = process.env.PORT
 const indexRouter = require('./routes/index')
 app.use('/',indexRouter)
 
-const postRouter = require('./routes/post_routes')
-app.use('/post', postRouter)
+const taskRouter = require('./routes/task_routes')
+app.use('/task', taskRouter)
 
 
 app.listen(port, ()=> {
