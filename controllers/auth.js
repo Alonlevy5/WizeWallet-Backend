@@ -122,8 +122,8 @@ const refreshToken = async (req, res, next) => {
 const logout = async (req, res, next) => {
   console.log("Logout");
   authHeaders = req.headers["authorization"];
-  const token = authHeaders && authHeaders.split(" ")[1];
-  if (token == null) return res.sendStatus("401");
+  const token = authHeaders && authHeaders.split(' ')[1];
+  if (token == null) return res.sendStatus('401');
 
   jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, async (err, userInfo) => {
     if (err) return res.status(403).send(err.message);
@@ -131,7 +131,7 @@ const logout = async (req, res, next) => {
     try {
       user = await User.findById(userId);
       if (user == null) return res.status(403).send("Invalid request");
-      if (!user.token.includes(token)) {
+      if (!user.tokens.includes(token)) {
         user.token = [];
         await user.save();
         return res.status(403).send("Invalid request");

@@ -51,8 +51,13 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwODAyN2IxZjAzNDEzNTExNzgzNzMiLCJpYXQiOjE2NDk0NDI4NTd9.hG9-hVcoqWxv8l9areVWXfhvjqhU_Qq6w4IyMXoLauk
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwOTJkYWRkNjI0MjViZDg4NGVkZjgiLCJpYXQiOjE2NDk0NDc2NDd9.oASYtsFaeb5Ro0TEGquSYGeKF_sAvIu5x3fdlYZp4hc
 Content-Type: application/json
+
+{
+    "message" : "Check",
+    "sender" : "Alon"
+}
 
 
 
