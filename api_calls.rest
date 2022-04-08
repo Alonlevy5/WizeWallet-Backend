@@ -10,16 +10,51 @@ GET http://localhost:3000/
 
 
 GET http://localhost:3000/task
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRlZmViYWRlOTcyNDBlNWJlYjY4ZjQiLCJpYXQiOjE2NDk0MTM1MTMsImV4cCI6MTY0OTQxNzExM30.6Bn3HB80NmJgrYYPs5nKV7SfUx_YvMV5anE8FG2fjEU
 ###
 
 
-GET http://localhost:3000/task/6249cea973468362dedd0197
+GET http://localhost:3000/task/624ea145bf02f33f2cb7ee35
 
 ###
 POST http://localhost:3000/task
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRlZmViYWRlOTcyNDBlNWJlYjY4ZjQiLCJpYXQiOjE2NDk0MTM1MTMsImV4cCI6MTY0OTQxNzExM30.6Bn3HB80NmJgrYYPs5nKV7SfUx_YvMV5anE8FG2fjEU
 Content-Type: application/json
 
 {
-    "message": "This is my new taskaas",
+    "message": "This is my authorized new Task ",
+    "amount": 180,
+    "sender": "Maor" 
+}
+
+
+//  -------------------  Auth ------------------------
+###
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "12345"
+}
+
+
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "12345"
+}
+
+
+###
+POST http://localhost:3000/auth/logout
+Content-Type: application/json
+
+{
+    "message": "Logout",
     "amount": 180
 }
