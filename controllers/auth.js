@@ -1,7 +1,13 @@
 const User = require("../models/user_model");
 const bcrypt = require("bcrypt"); // for encryption
-const { JsonWebTokenError } = require("jsonwebtoken");
 const jwt = require("jsonwebtoken");
+
+function sendError(res, code, msg) {
+  return res.status(code).send({
+    status: "fail",
+    eror: msg,
+  });
+}
 
 const register = async (req, res, next) => {
   console.log("register");
@@ -10,13 +16,13 @@ const register = async (req, res, next) => {
   const userPassword = req.body.password;
 
   if (userEmail == null || userPassword == null) {
-    return sendError(res, "wrong eamil or password");
+    return sendError(res, 400, "wrong eamil or password");
   }
 
   try {
     const exists = await User.findOne({ email: userEmail });
     if (exists != null) {
-      return sendError(res, "user already exists");
+      return sendError(res, 400, "user already exists");
     } else {
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(userPassword, salt);
@@ -30,7 +36,7 @@ const register = async (req, res, next) => {
       res.status(200).send(newUser);
     }
   } catch (err) {
-    sendError(res, `cannot find user by email: ${userEmail}`);
+    sendError(res, 400, `cannot find user by email: ${userEmail}`);
   }
 };
 
@@ -40,15 +46,15 @@ const login = async (req, res, next) => {
   const password = req.body.password;
 
   if (email == null || password == null) {
-    return sendError(res, "wrong eamil or password");
+    return sendError(res, 400, "Wrong eamil or password");
   }
 
   try {
     const user = await User.findOne({ email: email });
-    if (user == null) return sendError(res, "bad email");
+    if (user == null) return sendError(res, 400, "Wrong email or password");
 
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return sendError(res, "wrong email or password");
+    if (!match) return sendError(res, 400, "Wrong email or password");
 
     //send token to user
     const accessToken = await jwt.sign(
@@ -57,29 +63,91 @@ const login = async (req, res, next) => {
       { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
     );
 
-    res.status(200).send({ accessToken: accessToken });
+    const refreshToken = await jwt.sign(
+      { _id: user._id },
+      process.env.REFRESH_TOKEN_SECRET
+    );
+
+    if (user.tokens == null) user.tokens = [refreshToken];
+    else user.tokens.push(refreshToken);
+    await user.save();
+
+    res.status(200).send({
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    });
   } catch (err) {
-    return sendError(res, err.message);
+    return sendError(res, 400, err.message);
   }
 };
 
-const logout = async (req, res, next) => {
-  console.log("login");
-  res.status(400).send({
-    status: "fail",
-    message: "not implemented",
+const refreshToken = async (req, res, next) => {
+  console.log("refreshToken");
+  authHeaders = req.headers["authorization"];
+  const token = authHeaders && authHeaders.split(" ")[1];
+  if (token == null) return res.sendStatus("401");
+
+  jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, async (err, userInfo) => {
+    if (err) return res.status(403).send(err.message);
+    const userId = userInfo._id;
+    try {
+      user = await User.findById(userId);
+      if (user == null) return res.status(403).send("Invalid request");
+      if (!user.token.includes(token)) {
+        user.token = [];
+        await user.save();
+        return res.status(403).send("Invalid request");
+      }
+      const accessToken = await jwt.sign(
+        { _id: user._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
+      );
+      const refreshToken = await jwt.sign(
+        { _id: user._id },
+        process.env.REFRESH_TOKEN_SECRET
+      );
+
+      user.tokens[user.tokens.indexOf(token)] = refreshToken;
+      await user.save();
+      res
+        .status(200)
+        .send({ accessToken: accessToken, refreshToken: refreshToken });
+    } catch (err) {
+      res.status(403).send(err.message);
+    }
   });
 };
 
-function sendError(res, msg) {
-  return res.status(400).send({
-    status: "fail",
-    message: msg,
+const logout = async (req, res, next) => {
+  console.log("Logout");
+  authHeaders = req.headers["authorization"];
+  const token = authHeaders && authHeaders.split(" ")[1];
+  if (token == null) return res.sendStatus("401");
+
+  jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, async (err, userInfo) => {
+    if (err) return res.status(403).send(err.message);
+    const userId = userInfo._id;
+    try {
+      user = await User.findById(userId);
+      if (user == null) return res.status(403).send("Invalid request");
+      if (!user.token.includes(token)) {
+        user.token = [];
+        await user.save();
+        return res.status(403).send("Invalid request");
+      }
+      user.tokens.splice(user.tokens.indexOf(token), 1);
+      await user.save();
+      res.status(200).send();
+    } catch (err) {
+      res.status(403).send(err.message);
+    }
   });
-}
+};
 
 module.exports = {
   login,
   register,
   logout,
+  refreshToken,
 };

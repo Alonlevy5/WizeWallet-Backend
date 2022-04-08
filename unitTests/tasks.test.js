@@ -9,13 +9,13 @@ const email = "test@test.com";
 const pwd = "123456";
 
 beforeAll((done) => {
-  User.remove({ email: email }, (err) => {
+  User.remove({ 'email': email }, (err) => {
     done();
   });
 });
 
 afterAll((done) => {
-  User.remove({ email: email }, (err) => {
+  User.remove({ 'email': email }, (err) => {
     mongoose.connection.close();
     done();
   });
@@ -31,8 +31,8 @@ describe("Testing Task API", () => {
 
   test("test registration", async () => {
     const response = await request(app).post("/auth/register").send({
-      email: email,
-      password: pwd,
+      'email': email,
+      'password': pwd,
     });
     expect(response.statusCode).toEqual(200);
     userId = response.body._id; 
@@ -40,8 +40,8 @@ describe("Testing Task API", () => {
 
   test("test login", async () => {
     const response = await request(app).post("/auth/login").send({
-      email: email,
-      password: pwd,
+      'email': email,
+      'password': pwd,
     });
     expect(response.statusCode).toEqual(200);
     accessToken = response.body.accessToken;

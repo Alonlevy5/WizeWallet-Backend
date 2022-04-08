@@ -10,7 +10,7 @@ GET http://localhost:3000/
 
 
 GET http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRlZmViYWRlOTcyNDBlNWJlYjY4ZjQiLCJpYXQiOjE2NDk0MTM1MTMsImV4cCI6MTY0OTQxNzExM30.6Bn3HB80NmJgrYYPs5nKV7SfUx_YvMV5anE8FG2fjEU
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwNjA1MTI5NGQwYzIzNDk3NTVhYTAiLCJpYXQiOjE2NDk0MzY5MjMsImV4cCI6MTY0OTQ0MTkyM30.Ueo9tx5JYnOq3VnkU6kTicnjish3WL5OUyfKNQOB26M
 ###
 
 
@@ -18,13 +18,14 @@ GET http://localhost:3000/task/624ea145bf02f33f2cb7ee35
 
 ###
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRlZmViYWRlOTcyNDBlNWJlYjY4ZjQiLCJpYXQiOjE2NDk0MTM1MTMsImV4cCI6MTY0OTQxNzExM30.6Bn3HB80NmJgrYYPs5nKV7SfUx_YvMV5anE8FG2fjEU
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwNjA1MTI5NGQwYzIzNDk3NTVhYTAiLCJpYXQiOjE2NDk0MzY5MjMsImV4cCI6MTY0OTQ0MTkyM30.Ueo9tx5JYnOq3VnkU6kTicnjish3WL5OUyfKNQOB26M
+
 Content-Type: application/json
 
 {
     "message": "This is my authorized new Task ",
     "amount": 180,
-    "sender": "Maor" 
+    "sender": "Alon Check" 
 }
 
 
@@ -38,8 +39,6 @@ Content-Type: application/json
     "password": "12345"
 }
 
-
-
 ###
 POST http://localhost:3000/auth/login
 Content-Type: application/json
@@ -52,9 +51,16 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3000/auth/logout
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwODAyN2IxZjAzNDEzNTExNzgzNzMiLCJpYXQiOjE2NDk0NDI4NTd9.hG9-hVcoqWxv8l9areVWXfhvjqhU_Qq6w4IyMXoLauk
+Content-Type: application/json
+
+
+
+###
+POST http://localhost:3000/auth/refreshtoken
 Content-Type: application/json
 
 {
     "message": "Logout",
-    "amount": 180
+    "status": 200
 }
