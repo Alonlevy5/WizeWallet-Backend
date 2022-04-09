@@ -83,7 +83,7 @@ const login = async (req, res, next) => {
 
 const refreshToken = async (req, res, next) => {
   console.log("refreshToken");
-  authHeaders = req.headers["authorization"];
+  authHeaders = req.headers["authorization"]; 
   const token = authHeaders && authHeaders.split(" ")[1];
   if (token == null) return res.sendStatus("401");
 
@@ -93,8 +93,8 @@ const refreshToken = async (req, res, next) => {
     try {
       user = await User.findById(userId);
       if (user == null) return res.status(403).send("Invalid request");
-      if (!user.token.includes(token)) {
-        user.token = [];
+      if (!user.tokens.includes(token)) {
+        user.tokens = [];
         await user.save();
         return res.status(403).send("Invalid request");
       }
@@ -110,9 +110,7 @@ const refreshToken = async (req, res, next) => {
 
       user.tokens[user.tokens.indexOf(token)] = refreshToken;
       await user.save();
-      res
-        .status(200)
-        .send({ accessToken: accessToken, refreshToken: refreshToken });
+      res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken });
     } catch (err) {
       res.status(403).send(err.message);
     }
@@ -122,8 +120,8 @@ const refreshToken = async (req, res, next) => {
 const logout = async (req, res, next) => {
   console.log("Logout");
   authHeaders = req.headers["authorization"];
-  const token = authHeaders && authHeaders.split(' ')[1];
-  if (token == null) return res.sendStatus('401');
+  const token = authHeaders && authHeaders.split(" ")[1];
+  if (token == null) return res.sendStatus("401");
 
   jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, async (err, userInfo) => {
     if (err) return res.status(403).send(err.message);
@@ -132,13 +130,13 @@ const logout = async (req, res, next) => {
       user = await User.findById(userId);
       if (user == null) return res.status(403).send("Invalid request");
       if (!user.tokens.includes(token)) {
-        user.token = [];
+        user.tokens = [];
         await user.save();
         return res.status(403).send("Invalid request");
       }
       user.tokens.splice(user.tokens.indexOf(token), 1);
       await user.save();
-      res.status(200).send();
+      res.status(200).send('You loged out!');
     } catch (err) {
       res.status(403).send(err.message);
     }
