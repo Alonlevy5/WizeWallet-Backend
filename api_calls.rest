@@ -51,7 +51,8 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwOTJkYWRkNjI0MjViZDg4NGVkZjgiLCJpYXQiOjE2NDk0NDc2NDd9.oASYtsFaeb5Ro0TEGquSYGeKF_sAvIu5x3fdlYZp4hc
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwOTJkYWRkNjI0MjViZDg4NGVkZjgiLCJpYXQiOjE2NDk1MjU4ODZ9.DrIPTlQf7g20pYECyX5sTCdbzG3W1fD4H0HgTEWmGJo
+
 Content-Type: application/json
 
 {
@@ -63,6 +64,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3000/auth/refreshtoken
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwOTJkYWRkNjI0MjViZDg4NGVkZjgiLCJpYXQiOjE2NDk1MjYxMjV9.8ll_dziPCG1MfEcv0oK2Lmt62vAmUmpFqCIRP7y0NUw
 Content-Type: application/json
 
 {
