@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // ADD Array of children for each user
   tokens: {
     type: [String]
   }

@@ -1,24 +1,20 @@
-
 ###
-
 
 GET http://localhost:3000/
 
-
-
 ###
-
 
 GET http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwNjA1MTI5NGQwYzIzNDk3NTVhYTAiLCJpYXQiOjE2NDk0MzY5MjMsImV4cCI6MTY0OTQ0MTkyM30.Ueo9tx5JYnOq3VnkU6kTicnjish3WL5OUyfKNQOB26M
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNjdjNmZhNTI0ZTdjNmRlZjUiLCJpYXQiOjE2NDk2MDg1MDgsImV4cCI6MTY0OTYxMjEwOH0.oyi091G-Tut8oG_6wKW2f2JqHVFEX16CCwhGUOMdfKk
 ###
 
 
-GET http://localhost:3000/task/624ea145bf02f33f2cb7ee35
+GET http://localhost:3000/task/62508eecbc12b96cd4bd4630
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNjdjNmZhNTI0ZTdjNmRlZjUiLCJpYXQiOjE2NDk2MDg1MDgsImV4cCI6MTY0OTYxMjEwOH0.oyi091G-Tut8oG_6wKW2f2JqHVFEX16CCwhGUOMdfKk
 
 ###
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwNjA1MTI5NGQwYzIzNDk3NTVhYTAiLCJpYXQiOjE2NDk0MzY5MjMsImV4cCI6MTY0OTQ0MTkyM30.Ueo9tx5JYnOq3VnkU6kTicnjish3WL5OUyfKNQOB26M
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUyZmM5NTBiOGRhYTBkNDZmZjIzODUiLCJpYXQiOjE2NDk2MDU3ODJ9.V4r1RRv0U-hwVTRsS_ohxbhlxnZrxZ5016N8qdd4EeY
 
 Content-Type: application/json
 
@@ -31,6 +27,7 @@ Content-Type: application/json
 
 //  -------------------  Auth ------------------------
 ###
+
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
@@ -40,6 +37,7 @@ Content-Type: application/json
 }
 
 ###
+
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
@@ -50,8 +48,9 @@ Content-Type: application/json
 
 
 ###
+
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwOTJkYWRkNjI0MjViZDg4NGVkZjgiLCJpYXQiOjE2NDk1MjU4ODZ9.DrIPTlQf7g20pYECyX5sTCdbzG3W1fD4H0HgTEWmGJo
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNjdjNmZhNTI0ZTdjNmRlZjUiLCJpYXQiOjE2NDk2MDg1MDh9.Nbai8t1bxmVqjtEOoqfqNVN5iRYwcqcKOBbti_NSteM
 
 Content-Type: application/json
 
@@ -60,11 +59,10 @@ Content-Type: application/json
     "sender" : "Alon"
 }
 
-
-
 ###
+
 POST http://localhost:3000/auth/refreshtoken
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwOTJkYWRkNjI0MjViZDg4NGVkZjgiLCJpYXQiOjE2NDk1MjYxMjV9.8ll_dziPCG1MfEcv0oK2Lmt62vAmUmpFqCIRP7y0NUw
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUyZjdlZTExMmQ5ODVhZmExOTllNDkiLCJpYXQiOjE2NDk2MDQ1OTN9.yYQ489MbOLLOJCUQvJIEL8l95MCC1LvXzWM8_FxVbiE
 Content-Type: application/json
 
 {
