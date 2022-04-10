@@ -3,6 +3,11 @@ const router = express.Router();
 
 const Auth = require("../controllers/auth");
 
+/**
+ * @swagger
+ * 
+ * */
+
 router.post("/register", Auth.register);
 
 router.post("/login", Auth.login);
