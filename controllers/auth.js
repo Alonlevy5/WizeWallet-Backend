@@ -33,6 +33,7 @@ const register = async (req, res, next) => {
       });
 
       newUser = await user.save();
+      console.log('register OK');
       res.status(200).send(newUser);
     }
   } catch (err) {
@@ -72,6 +73,7 @@ const login = async (req, res, next) => {
     else user.tokens.push(refreshToken);
     await user.save();
 
+    console.log('login OK');
     res.status(200).send({
       accessToken: accessToken,
       refreshToken: refreshToken,
