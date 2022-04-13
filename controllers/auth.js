@@ -121,6 +121,7 @@ const refreshToken = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
   console.log("Logout");
+  //need to give here the refresh  token
   authHeaders = req.headers["authorization"];
   const token = authHeaders && authHeaders.split(" ")[1];
   if (token == null) return res.sendStatus("401");
@@ -138,6 +139,7 @@ const logout = async (req, res, next) => {
       }
       user.tokens.splice(user.tokens.indexOf(token), 1);
       await user.save();
+      console.log('logout OK');
       res.status(200).send('You loged out!');
     } catch (err) {
       res.status(403).send(err.message);
