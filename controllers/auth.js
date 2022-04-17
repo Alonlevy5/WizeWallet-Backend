@@ -1,4 +1,4 @@
-const User = require("../models/user_model");
+const Parent = require("../models/parent_model");
 const bcrypt = require("bcrypt"); // for encryption
 const jwt = require("jsonwebtoken");
 
@@ -10,24 +10,24 @@ function sendError(res, code, msg) {
 }
 
 const register = async (req, res, next) => {
-  console.log("register");
+  console.log("Register");
 
   const userEmail = req.body.email;
   const userPassword = req.body.password;
 
   if (userEmail == null || userPassword == null) {
-    return sendError(res, 400, "wrong eamil or password");
+    return sendError(res, 400, "Wrong email or password");
   }
 
   try {
-    const exists = await User.findOne({ email: userEmail });
+    const exists = await Parent.findOne({ email: userEmail });
     if (exists != null) {
-      return sendError(res, 400, "user already exists");
+      return sendError(res, 400, "User already exists");
     } else {
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(userPassword, salt);
 
-      const user = User({
+      const user = Parent({
         email: userEmail,
         password: hashPassword,
       });
@@ -50,7 +50,7 @@ const login = async (req, res, next) => {
   }
 
   try {
-    const user = await User.findOne({ email: email });
+    const user = await Parent.findOne({ email: email });
     if (user == null) return sendError(res, 400, "Wrong email or password");
 
     const match = await bcrypt.compare(password, user.password);
@@ -91,7 +91,7 @@ const refreshToken = async (req, res, next) => {
     if (err) return res.status(403).send(err.message);
     const userId = userInfo._id;
     try {
-      user = await User.findById(userId);
+      user = await Parent.findById(userId);
       if (user == null) return res.status(403).send("Invalid request");
       if (!user.tokens.includes(token)) {
         user.tokens = [];
@@ -127,7 +127,7 @@ const logout = async (req, res, next) => {
     if (err) return res.status(403).send(err.message);
     const userId = userInfo._id;
     try {
-      user = await User.findById(userId);
+      user = await Parent.findById(userId);
       if (user == null) return res.status(403).send("Invalid request");
       if (!user.tokens.includes(token)) {
         user.tokens = [];

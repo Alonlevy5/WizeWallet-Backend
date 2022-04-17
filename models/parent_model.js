@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const parentSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -9,10 +9,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // ADD Array of children for each user
   tokens: {
     type: [String]
+  },
+  children: {
+    type: [Number]
   }
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Parent", parentSchema);

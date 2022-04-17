@@ -14,7 +14,7 @@ const Auth = require("../controllers/auth");
  * @swagger
  * components:
  *   schemas:
- *     User:
+ *     Parent:
  *       type: object
  *       required:
  *         - email
@@ -26,6 +26,11 @@ const Auth = require("../controllers/auth");
  *         password:
  *           type: string
  *           description: The user password
+ *         children:
+ *           type: array
+ *           items:
+ *             type: number
+ *           description: Array of children ID's
  *       example:
  *         email: 'alon@gmail.com'
  *         password: '123456'
