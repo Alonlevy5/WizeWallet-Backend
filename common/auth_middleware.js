@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const authenticate = async (req, res, next) => {
   authHeader = req.headers["authorization"];
+  //in postman header key=authorization, value=authorization+token 
   const token = authHeader && authHeader.split(' ')[1];
 
   if (token == null) return res.status(401).send();
