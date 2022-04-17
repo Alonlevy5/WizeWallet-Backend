@@ -50,7 +50,7 @@ Content-Type: application/json
 ###
 
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNjdjNmZhNTI0ZTdjNmRlZjUiLCJpYXQiOjE2NDk2MDg1MDh9.Nbai8t1bxmVqjtEOoqfqNVN5iRYwcqcKOBbti_NSteM
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNjhkM2I3ZjIzNGNiYTU2MDBmNGEiLCJpYXQiOjE2NTAyMjMzMzF9.yJTSyPOsR__jYwKSFlNCFYL4NopAchQVRnLW564GgPs
 
 Content-Type: application/json
 
