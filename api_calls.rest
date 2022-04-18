@@ -1,18 +1,24 @@
 ###
+//  -------------------  Check Routing ------------------------
 
 GET http://localhost:3000/
 
 ###
+//  -------------------  Get All Tasks  ------------------------
 
 GET http://localhost:3000/task
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNzJhY2IxYmVjZDE3N2Q2N2NjM2YiLCJpYXQiOjE2NTAzMDU4NTcsImV4cCI6MTY1MDMwOTQ1N30.ZR0bm-Ms48fFZHUeikZ2KOCzJ-rD8wWDsOqqTwHg96o
 ###
 
+//  -------------------  Get Task By ID's ------------------------
 
 GET http://localhost:3000/task/62508eecbc12b96cd4bd4630
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNjdjNmZhNTI0ZTdjNmRlZjUiLCJpYXQiOjE2NDk2MDg1MDgsImV4cCI6MTY0OTYxMjEwOH0.oyi091G-Tut8oG_6wKW2f2JqHVFEX16CCwhGUOMdfKk
 
 ###
+
+//  -------------------  Add Tasks ------------------------
+
 POST http://localhost:3000/task
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkYmJiYTE3ZGVjNTg4YzQ4YzJlY2YiLCJpYXQiOjE2NTAzMTAwODEsImV4cCI6MTY1MDMxMzY4MX0.iTPQWvFYoxhkdwRVgkOhi0POKsKKOOc-bmG36BNE2vs
 Content-Type: application/json
@@ -36,6 +42,7 @@ Content-Type: application/json
 
 ###
 //  -------------------  Child Register ------------------------
+//  -------------------  Only Fields Diffrence ------------------------
 
 POST http://localhost:3000/auth/register
 Content-Type: application/json
@@ -48,6 +55,7 @@ Content-Type: application/json
 
 ###
 //  -------------------  Login ------------------------
+//  ------------------- Same API For Both ------------------------
 
 
 POST http://localhost:3000/auth/login
@@ -60,6 +68,7 @@ Content-Type: application/json
 
 
 ###
+//  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/logout
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNjhkM2I3ZjIzNGNiYTU2MDBmNGEiLCJpYXQiOjE2NTAyMjMzMzF9.yJTSyPOsR__jYwKSFlNCFYL4NopAchQVRnLW564GgPs
@@ -72,6 +81,7 @@ Content-Type: application/json
 }
 
 ###
+//  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/refreshtoken
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUyZjdlZTExMmQ5ODVhZmExOTllNDkiLCJpYXQiOjE2NDk2MDQ1OTN9.yYQ489MbOLLOJCUQvJIEL8l95MCC1LvXzWM8_FxVbiE
