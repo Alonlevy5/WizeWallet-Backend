@@ -30,7 +30,7 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {   
-    "email": "test@gmaila.com",
+    "email": "test@gmail.com",
     "password": "12345"
 }
 
@@ -40,9 +40,9 @@ Content-Type: application/json
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{   "_id": 20587244551,
+{   "_id": 205872433,
     "balance": 200,
-    "email": "test@gmaila.com",
+    "email": "test@gmail.com",
     "password": "12345"
 }
 
