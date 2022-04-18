@@ -25,8 +25,9 @@ const register = async (req, res, next) => {
       const balance = req.body.balance
       const id = req.body._id
       const exists = await Child.findOne({ email: userEmail });
-      if (exists != null) {
-        return sendError(res, 400, "Child user already exists");
+      const exists1 = await Parent.findOne({ email: userEmail})
+      if (exists != null || exists1 != null) {
+        return sendError(res, 400, "User already exists");
       } else {
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(userPassword, salt);
@@ -45,7 +46,8 @@ const register = async (req, res, next) => {
 
     } else {
       const exists = await Parent.findOne({ email: userEmail });
-      if (exists != null) {
+      const exists1 = await Child.findOne({ email: userEmail})
+      if (exists != null || exists1 != null) {
         return sendError(res, 400, "Parent User already exists");
       } else {
         const salt = await bcrypt.genSalt(10);
