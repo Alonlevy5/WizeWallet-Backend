@@ -68,14 +68,14 @@ const Auth = require("../controllers/auth");
 *       content:
 *         application/json:
 *           schema:
-*             $ref: '#/components/schemas/User'
+*             $ref: '#/components/schemas/Parent'
 *     responses:
 *       200:
 *         description: The new user
 *         content:
 *           application/json:
 *             schema:
-*               $ref: '#/components/schemas/User'
+*               $ref: '#/components/schemas/Parent'
 */
 
 router.post("/register", Auth.register);
@@ -92,7 +92,7 @@ router.post("/register", Auth.register);
 *       content:
 *         application/json:
 *           schema:
-*             $ref: '#/components/schemas/User'
+*             $ref: '#/components/schemas/Parent'
 *     responses:
 *       200:
 *         description: The Access & Refresh Tokens

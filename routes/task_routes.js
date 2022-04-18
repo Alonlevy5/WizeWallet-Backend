@@ -30,11 +30,11 @@ const authenticate = require("../common/auth_middleware");
  *           description: The amount you get for the given task.
  *         sender:
  *           type: string
- *           description: who sended the task
+ *           description: The Parrent ID
  *       example:
  *         message: 'Do your homework'
  *         amount: 150
- *         sender: 'Father'
+ *         sender: 'Parrent ID'
  */
 
 /**

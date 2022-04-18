@@ -5,7 +5,7 @@ GET http://localhost:3000/
 ###
 
 GET http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNjdjNmZhNTI0ZTdjNmRlZjUiLCJpYXQiOjE2NDk2MDg1MDgsImV4cCI6MTY0OTYxMjEwOH0.oyi091G-Tut8oG_6wKW2f2JqHVFEX16CCwhGUOMdfKk
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNzJhY2IxYmVjZDE3N2Q2N2NjM2YiLCJpYXQiOjE2NTAzMDU4NTcsImV4cCI6MTY1MDMwOTQ1N30.ZR0bm-Ms48fFZHUeikZ2KOCzJ-rD8wWDsOqqTwHg96o
 ###
 
 
@@ -14,25 +14,35 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNj
 
 ###
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUyZmM5NTBiOGRhYTBkNDZmZjIzODUiLCJpYXQiOjE2NDk2MDU3ODJ9.V4r1RRv0U-hwVTRsS_ohxbhlxnZrxZ5016N8qdd4EeY
-
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkYmJiYTE3ZGVjNTg4YzQ4YzJlY2YiLCJpYXQiOjE2NTAzMTAwODEsImV4cCI6MTY1MDMxMzY4MX0.iTPQWvFYoxhkdwRVgkOhi0POKsKKOOc-bmG36BNE2vs
 Content-Type: application/json
 
 {
-    "message": "This is my authorized new Task ",
-    "amount": 180,
-    "sender": "Alon Check" 
+  "message": "Do your homework",
+  "amount": 150
 }
 
 
 //  -------------------  Auth ------------------------
 ###
+//  -------------------  Parent Register ------------------------
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{   
+    "email": "test@gmaila.com",
+    "password": "12345"
+}
+
+###
+//  -------------------  Child Register ------------------------
 
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{
-    "email": "test@gmail.com",
+{   "_id": 20587244551,
+    "balance": 200,
+    "email": "test@gmaila.com",
     "password": "12345"
 }
 

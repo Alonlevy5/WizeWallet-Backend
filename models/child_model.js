@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 
 const childSchema = new mongoose.Schema(
   {
-    _id: String,
-    unique: true,
-
+    _id: {
+      type: Number,
+      required: true
+    },
     email: {
       type: String,
       required: true,
@@ -26,9 +27,8 @@ const childSchema = new mongoose.Schema(
     },
     transactions: [
       {
-        description: String,
-        amount: Number,
-        required: true,
+        "description": String,
+        "amount": Number,
       },
     ],
   },

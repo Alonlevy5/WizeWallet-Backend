@@ -29,7 +29,7 @@ const getTasksById = async (req, res, next) => {
 };
 
 const addTasks = async (req, res, next) => {
-  console.log("addTasks");
+  console.log("addTasks " + req.body.message);
 
   sender = req.user._id;
   
