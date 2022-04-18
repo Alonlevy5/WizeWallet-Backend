@@ -22,10 +22,10 @@ const register = async (req, res, next) => {
 
   try {
     if (req.body.balance == "" || req.body.balance) {
-      const balance = req.body.balance
-      const id = req.body._id
+      const balance = req.body.balance;
+      const id = req.body._id;
       const exists = await Child.findOne({ email: userEmail });
-      const exists1 = await Parent.findOne({ email: userEmail})
+      const exists1 = await Parent.findOne({ email: userEmail });
       if (exists != null || exists1 != null) {
         return sendError(res, 400, "User already exists");
       } else {
@@ -36,17 +36,16 @@ const register = async (req, res, next) => {
           _id: id,
           email: userEmail,
           password: hashPassword,
-          balance: balance
+          balance: balance,
         });
 
         newUser = await user.save();
         console.log("register OK");
         res.status(200).send(newUser);
       }
-
     } else {
       const exists = await Parent.findOne({ email: userEmail });
-      const exists1 = await Child.findOne({ email: userEmail})
+      const exists1 = await Child.findOne({ email: userEmail });
       if (exists != null || exists1 != null) {
         return sendError(res, 400, "Parent User already exists");
       } else {
@@ -79,32 +78,60 @@ const login = async (req, res, next) => {
 
   try {
     const user = await Parent.findOne({ email: email });
-    if (user == null) return sendError(res, 400, "Wrong email or password");
+    const user1 = await Child.findOne({ email: email });
+    if (user == null && user1 == null)
+      return sendError(res, 400, "Wrong email or password");
+    if (user) {
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) return sendError(res, 400, "Wrong email or password");
 
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) return sendError(res, 400, "Wrong email or password");
+      //send token to user
+      const accessToken = await jwt.sign(
+        { _id: user._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
+      );
 
-    //send token to user
-    const accessToken = await jwt.sign(
-      { _id: user._id },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
-    );
+      const refreshToken = await jwt.sign(
+        { _id: user._id },
+        process.env.REFRESH_TOKEN_SECRET
+      );
 
-    const refreshToken = await jwt.sign(
-      { _id: user._id },
-      process.env.REFRESH_TOKEN_SECRET
-    );
+      if (user.tokens == null) user.tokens = [refreshToken];
+      else user.tokens.push(refreshToken);
+      await user.save();
 
-    if (user.tokens == null) user.tokens = [refreshToken];
-    else user.tokens.push(refreshToken);
-    await user.save();
+      console.log("login OK");
+      res.status(200).send({
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      });
+    } else {
+      const match = await bcrypt.compare(password, user1.password);
+      if (!match) return sendError(res, 400, "Wrong email or password");
 
-    console.log("login OK");
-    res.status(200).send({
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    });
+      //send token to user
+      const accessToken = await jwt.sign(
+        { _id: user1._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
+      );
+
+      const refreshToken = await jwt.sign(
+        { _id: user1._id },
+        process.env.REFRESH_TOKEN_SECRET
+      );
+
+      if (user1.tokens == null) user1.tokens = [refreshToken];
+      else user1.tokens.push(refreshToken);
+      await user1.save();
+
+      console.log("login OK");
+      res.status(200).send({
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      });
+    }
   } catch (err) {
     return sendError(res, 400, err.message);
   }
