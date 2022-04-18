@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const childSchema = new mongoose.Schema(
   {
     _id: String,
+    unique: true,
+
     email: {
       type: String,
       required: true,
