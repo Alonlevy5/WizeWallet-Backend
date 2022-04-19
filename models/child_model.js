@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const childSchema = new mongoose.Schema(
   {
     _id: {
-      type: Number,
+      type: String,
       required: true
     },
     email: {

@@ -77,29 +77,29 @@ const login = async (req, res, next) => {
   }
 
   try {
-    const user = await Parent.findOne({ email: email });
-    const user1 = await Child.findOne({ email: email });
-    if (user == null && user1 == null)
+    const parent = await Parent.findOne({ email: email });
+    const child = await Child.findOne({ email: email });
+    if (parent == null && child == null)
       return sendError(res, 400, "Wrong email or password");
-    if (user) {
-      const match = await bcrypt.compare(password, user.password);
+    if (parent) {
+      const match = await bcrypt.compare(password, parent.password);
       if (!match) return sendError(res, 400, "Wrong email or password");
 
       //send token to user
       const accessToken = await jwt.sign(
-        { _id: user._id },
+        { _id: parent._id },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
       );
 
       const refreshToken = await jwt.sign(
-        { _id: user._id },
+        { _id: parent._id },
         process.env.REFRESH_TOKEN_SECRET
       );
 
-      if (user.tokens == null) user.tokens = [refreshToken];
-      else user.tokens.push(refreshToken);
-      await user.save();
+      if (parent.tokens == null) parent.tokens = [refreshToken];
+      else parent.tokens.push(refreshToken);
+      await parent.save();
 
       console.log("login OK");
       res.status(200).send({
@@ -107,24 +107,24 @@ const login = async (req, res, next) => {
         refreshToken: refreshToken,
       });
     } else {
-      const match = await bcrypt.compare(password, user1.password);
+      const match = await bcrypt.compare(password, child.password);
       if (!match) return sendError(res, 400, "Wrong email or password");
 
       //send token to user
       const accessToken = await jwt.sign(
-        { _id: user1._id },
+        { _id: child._id },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
       );
 
       const refreshToken = await jwt.sign(
-        { _id: user1._id },
+        { _id: child._id },
         process.env.REFRESH_TOKEN_SECRET
       );
 
-      if (user1.tokens == null) user1.tokens = [refreshToken];
-      else user1.tokens.push(refreshToken);
-      await user1.save();
+      if (child.tokens == null) child.tokens = [refreshToken];
+      else child.tokens.push(refreshToken);
+      await child.save();
 
       console.log("login OK");
       res.status(200).send({

@@ -7,26 +7,54 @@ GET http://localhost:3000/
 //  -------------------  Get All Tasks  ------------------------
 
 GET http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNzJhY2IxYmVjZDE3N2Q2N2NjM2YiLCJpYXQiOjE2NTAzMDU4NTcsImV4cCI6MTY1MDMwOTQ1N30.ZR0bm-Ms48fFZHUeikZ2KOCzJ-rD8wWDsOqqTwHg96o
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTAxNTFhMzEzODAwNDY3ZjQ3Y2MiLCJpYXQiOjE2NTAzODY4MTIsImV4cCI6MTY1MDM5MDQxMn0.oGFYcnVQPJZ_xDLoPm7VS9PfQrMwexksj9HSeBoBBbE
 ###
 
 //  -------------------  Get Task By ID's ------------------------
 
-GET http://localhost:3000/task/62508eecbc12b96cd4bd4630
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNjdjNmZhNTI0ZTdjNmRlZjUiLCJpYXQiOjE2NDk2MDg1MDgsImV4cCI6MTY0OTYxMjEwOH0.oyi091G-Tut8oG_6wKW2f2JqHVFEX16CCwhGUOMdfKk
+GET http://localhost:3000/task/625ed1963b782f120df0a7bc
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTAxNTFhMzEzODAwNDY3ZjQ3Y2MiLCJpYXQiOjE2NTAzODY4MTIsImV4cCI6MTY1MDM5MDQxMn0.oGFYcnVQPJZ_xDLoPm7VS9PfQrMwexksj9HSeBoBBbE
 
 ###
 
 //  -------------------  Add Tasks ------------------------
 
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkYmJiYTE3ZGVjNTg4YzQ4YzJlY2YiLCJpYXQiOjE2NTAzMTAwODEsImV4cCI6MTY1MDMxMzY4MX0.iTPQWvFYoxhkdwRVgkOhi0POKsKKOOc-bmG36BNE2vs
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTAxNTFhMzEzODAwNDY3ZjQ3Y2MiLCJpYXQiOjE2NTAzODY4MTIsImV4cCI6MTY1MDM5MDQxMn0.oGFYcnVQPJZ_xDLoPm7VS9PfQrMwexksj9HSeBoBBbE
 Content-Type: application/json
 
 {
   "message": "Do your homework",
   "amount": 150
 }
+
+
+
+###
+//  -------------------  Get All Tasks  ------------------------
+
+GET http://localhost:3000/task
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NzMzLCJleHAiOjE2NTAzOTIzMzN9.ekjQaM7XYa-0WwS3Y70aEdiP1BlEEwjGCwLpxpmEzJg
+
+Content-Type:application/json
+
+
+###
+
+//  -------------------  Add Transaction ------------------------
+POST  http://localhost:3000/transaction
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NzMzLCJleHAiOjE2NTAzOTIzMzN9.ekjQaM7XYa-0WwS3Y70aEdiP1BlEEwjGCwLpxpmEzJg
+Content-Type:application/json
+
+{   
+    "amount": 50,
+    "description": "gift for Pesah"
+}
+
+
+
+
+
 
 
 //  -------------------  Auth ------------------------
@@ -36,7 +64,7 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {   
-    "email": "test@gmail.com",
+    "email": "parent@gmail.com",
     "password": "12345"
 }
 
@@ -47,10 +75,10 @@ Content-Type: application/json
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{   "_id": 2058724383,
-    "balance": 200,
-    "email": "test@gmail5.com",
-    "password": "12345"
+{   "_id": "3065465",
+    "balance": 300,
+    "email": "child@gmail.com",
+    "password": "54321"
 }
 
 ###
@@ -62,8 +90,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail.com",
-    "password": "12345"
+    "email": "child@gmail.com",
+    "password": "54321"
 }
 
 
@@ -71,7 +99,7 @@ Content-Type: application/json
 //  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNjhkM2I3ZjIzNGNiYTU2MDBmNGEiLCJpYXQiOjE2NTAyMjMzMzF9.yJTSyPOsR__jYwKSFlNCFYL4NopAchQVRnLW564GgPs
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NDg1fQ.jcTKF37lauG7FxiIfMQHHftcY6dEEjkuKU64aggbUPU
 
 Content-Type: application/json
 
@@ -84,7 +112,7 @@ Content-Type: application/json
 //  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/refreshtoken
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUyZjdlZTExMmQ5ODVhZmExOTllNDkiLCJpYXQiOjE2NDk2MDQ1OTN9.yYQ489MbOLLOJCUQvJIEL8l95MCC1LvXzWM8_FxVbiE
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NDg1fQ.jcTKF37lauG7FxiIfMQHHftcY6dEEjkuKU64aggbUPU
 Content-Type: application/json
 
 {
