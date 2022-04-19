@@ -22,6 +22,7 @@ const authenticate = require("../common/auth_middleware");
  *         - message
  *         - amount
  *         - sender
+ *         - isCompleted
  *       properties:
  *         kidid:
  *           type: number
@@ -35,11 +36,15 @@ const authenticate = require("../common/auth_middleware");
  *         sender:
  *           type: string
  *           description: The Parrent ID
+ *         isCompleted:
+ *           type: boolean
+ *           description: Is the task completed
  *       example:
  *         kidid: 123456
  *         message: 'Do your homework'
  *         amount: 150
  *         sender: 'Parrent ID'
+ *         isCompleted: true
  */
 
 /**
@@ -62,17 +67,10 @@ router.get("/", authenticate, Task.getTasks);
 
 /**
  * @swagger
- * /task/{id}:
+ * /task/kid:
  *   get:
- *     summary: Get task by ID
+ *     summary: Get task by KID ID
  *     tags: [Task Api]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: The task id
  *     responses:
  *       200:
  *         description: The task list
@@ -83,7 +81,7 @@ router.get("/", authenticate, Task.getTasks);
  *               items:
  *                 $ref: '#/components/schemas/Task'
  */
-router.get("/:id", authenticate, Task.getTasksById);
+router.get("/kid", authenticate, Task.getTasksBykidId);
 
 /**
  * @swagger
@@ -106,5 +104,7 @@ router.get("/:id", authenticate, Task.getTasksById);
  *               $ref: '#/components/schemas/Task'
  */
 router.post("/", authenticate, Task.addTasks);
+
+
 
 module.exports = router;

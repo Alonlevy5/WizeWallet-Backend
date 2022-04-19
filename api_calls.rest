@@ -7,13 +7,15 @@ GET http://localhost:3000/
 //  -------------------  Get All Tasks  ------------------------
 
 GET http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNzJhY2IxYmVjZDE3N2Q2N2NjM2YiLCJpYXQiOjE2NTAzMDU4NTcsImV4cCI6MTY1MDMwOTQ1N30.ZR0bm-Ms48fFZHUeikZ2KOCzJ-rD8wWDsOqqTwHg96o
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjUwMzg4NTU0LCJleHAiOjE2NTAzOTIxNTR9.U3mC_s5fCT7pDXEci5rb71i_tq-lzWRlyDsaIP_iH30
 ###
 
-//  -------------------  Get Task By ID's ------------------------
 
-GET http://localhost:3000/task/62508eecbc12b96cd4bd4630
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNjdjNmZhNTI0ZTdjNmRlZjUiLCJpYXQiOjE2NDk2MDg1MDgsImV4cCI6MTY0OTYxMjEwOH0.oyi091G-Tut8oG_6wKW2f2JqHVFEX16CCwhGUOMdfKk
+//  -------------------  Get Task By Kid ID' ------------------------
+
+GET http://localhost:3000/task/kid
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjUwMzg4NTU0LCJleHAiOjE2NTAzOTIxNTR9.U3mC_s5fCT7pDXEci5rb71i_tq-lzWRlyDsaIP_iH30
+
 
 ###
 
@@ -24,7 +26,7 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkYmViZm
 Content-Type: application/json
 
 {
-  "_id": 123456,
+  "kidid": 123456,
   "message": "Do your homework",
   "amount": 150
 }
@@ -48,9 +50,9 @@ Content-Type: application/json
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{   "_id": 20587243831,
+{   "_id": 123456,
     "balance": 200,
-    "email": "test@gmail1.com",
+    "email": "test@gmail11.com",
     "password": "12345"
 }
 
@@ -63,7 +65,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail.com",
+    "email": "test@gmail11.com",
     "password": "12345"
 }
 

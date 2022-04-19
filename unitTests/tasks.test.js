@@ -74,7 +74,7 @@ describe("Testing Task API", () => {
     expect(newTask.amount).toEqual(taskAmount);
     expect(newTask.kidid).toEqual(kid);
     const response2 = await request(app)
-      .get("/task/" + newTask._id)
+      .get("/task/kid" )
       .set({ authorization: "JWT " + accessToken });
 
     expect(response2.statusCode).toEqual(200);
