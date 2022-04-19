@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
+  //Refrence to KID ID IMPORTANT!!!
+  kidid: {
+    type: Number,
+    required: true
+  },
   message: {
     type: String,
     required: true,
@@ -11,6 +16,10 @@ const taskSchema = new mongoose.Schema({
   },
   sender: {
     type: String,
+  },
+  isCompleted: {
+    type: Boolean,
+    default: false
   },
 });
 

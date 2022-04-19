@@ -20,10 +20,11 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUzMDcxNj
 //  -------------------  Add Tasks ------------------------
 
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkYmJiYTE3ZGVjNTg4YzQ4YzJlY2YiLCJpYXQiOjE2NTAzMTAwODEsImV4cCI6MTY1MDMxMzY4MX0.iTPQWvFYoxhkdwRVgkOhi0POKsKKOOc-bmG36BNE2vs
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkYmViZmJhZDQzZWM2N2UxN2FlZGYiLCJpYXQiOjE2NTAzODE1ODgsImV4cCI6MTY1MDM4NTE4OH0._Fe8u_jznseRf0KXjHEJO80b01MDRqKNGlePWS9Ewgk
 Content-Type: application/json
 
 {
+  "_id": 123456,
   "message": "Do your homework",
   "amount": 150
 }
@@ -47,9 +48,9 @@ Content-Type: application/json
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{   "_id": 2058724383,
+{   "_id": 20587243831,
     "balance": 200,
-    "email": "test@gmail5.com",
+    "email": "test@gmail1.com",
     "password": "12345"
 }
 

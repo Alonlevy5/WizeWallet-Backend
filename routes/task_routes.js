@@ -18,10 +18,14 @@ const authenticate = require("../common/auth_middleware");
  *     Task:
  *       type: object
  *       required:
+ *         - kidid
  *         - message
  *         - amount
  *         - sender
  *       properties:
+ *         kidid:
+ *           type: number
+ *           description: Refrence to kid REAL ID!
  *         message:
  *           type: string
  *           description: The task's text.
@@ -32,6 +36,7 @@ const authenticate = require("../common/auth_middleware");
  *           type: string
  *           description: The Parrent ID
  *       example:
+ *         kidid: 123456
  *         message: 'Do your homework'
  *         amount: 150
  *         sender: 'Parrent ID'

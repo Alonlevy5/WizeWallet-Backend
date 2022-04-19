@@ -34,8 +34,9 @@ const addTasks = async (req, res, next) => {
   console.log("addTasks " + req.body.message);
 
   sender = req.user._id;
-  
+
   const newTask = Task({
+    kidid: req.body.kidid,
     message: req.body.message,
     amount: req.body.amount,
     sender: sender,

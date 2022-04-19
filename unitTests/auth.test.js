@@ -1,11 +1,16 @@
 const app = require("../server");
 const request = require("supertest");
 const mongoosse = require("mongoose");
-const User = require("../models/user_model");
+const Parent = require("../models/parent_model");
+const Child = require("../models/child_model");
 const { JsonWebTokenError } = require("jsonwebtoken");
 
 const email = "test@test.com";
+const emailChild = "test@test1.com";
 const pwd = "123456";
+const pwdChild = '12345'
+const balance = 0;
+const id = 20598211;
 let accessToken = ''
 let refreshToken = ''
 let newAccessToken = ''
@@ -16,13 +21,15 @@ String.prototype.replaceAt = function(index, replacement) {
 }
 
 beforeAll((done) => { 
-  User.remove({ email: email }, (err) => {
+  Parent.remove({ 'email': email }, (err) => {
+    Child.remove({ 'email': emailChild })
     done();
   });
 });
 
 afterAll((done) => {
-  User.remove({ email: email }, (err) => {
+  Parent.remove({ 'email': email }, (err) => {
+    Child.remove({ 'email': emailChild })
     mongoosse.connection.close();
     done();
   });
@@ -30,12 +37,23 @@ afterAll((done) => {
 
 describe("Testing Auth API", () => {
 
-  test("Add a new user", async () => {
+  test("Test Parent Registration", async () => {
     const response = await request(app).post("/auth/register").send({
       'email': email,
       'password': pwd,
     });
     expect(response.statusCode).toEqual(200);
+  });
+
+  test("Test Child Registration", async () => {
+    const response = await request(app).post("/auth/register").send({
+      'email': emailChild,
+      'password': pwdChild,
+      'balance': balance,
+      "_id": id,
+    });
+    expect(response.statusCode).toEqual(200);
+    userId = response.body._id; 
   });
 
   test("Login User", async () => {

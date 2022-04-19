@@ -63,7 +63,7 @@ const register = async (req, res, next) => {
       }
     }
   } catch (err) {
-    sendError(res, 400, `cannot find user by email: ${userEmail}`);
+    sendError(res, 400, `User id is Registered already on a diffrent Email than: ${userEmail}`);
   }
 };
 

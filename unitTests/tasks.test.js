@@ -3,19 +3,21 @@ const app = require("../server");
 const mongoose = require("mongoose");
 const { response } = require("../server");
 
-const User = require("../models/user_model");
+const Parent = require("../models/parent_model");
 
 const email = "test@test.com";
 const pwd = "123456";
+const balance = 0;
+const _id = 2059821;
 
 beforeAll((done) => {
-  User.remove({ 'email': email }, (err) => {
+  Parent.remove({ 'email': email }, (err) => {
     done();
   });
 });
 
 afterAll((done) => {
-  User.remove({ 'email': email }, (err) => {
+  Parent.remove({ 'email': email }, (err) => {
     mongoose.connection.close();
     done();
   });
@@ -28,8 +30,9 @@ describe("Testing Task API", () => {
   const sender = "Maor";
   let accessToken = "";
   let userId = "";
+  const kid = 1234568
 
-  test("test registration", async () => {
+  test("Test Parent Registration", async () => {
     const response = await request(app).post("/auth/register").send({
       'email': email,
       'password': pwd,
@@ -59,6 +62,7 @@ describe("Testing Task API", () => {
       .post("/task")
       .set({ authorization: "JWT " + accessToken })
       .send({
+        kidid: kid,
         message: taskMessage,
         amount: taskAmount,
       });
@@ -68,7 +72,7 @@ describe("Testing Task API", () => {
 
     expect(newTask.message).toEqual(taskMessage);
     expect(newTask.amount).toEqual(taskAmount);
-
+    expect(newTask.kidid).toEqual(kid);
     const response2 = await request(app)
       .get("/task/" + newTask._id)
       .set({ authorization: "JWT " + accessToken });
