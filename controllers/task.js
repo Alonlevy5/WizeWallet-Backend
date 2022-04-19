@@ -5,6 +5,7 @@ const getTasks = async (req, res, next) => {
 
   try {
     tasks = await Task.find();
+    console.log("get all tasks OK");
     res.status(200).send(tasks);
   } catch (err) {
     res.status(400).send({
@@ -19,6 +20,7 @@ const getTasksById = async (req, res, next) => {
 
   try {
     tasks = await Task.findById(req.params.id);
+    console.log("get taskById OK");
     res.status(200).send(tasks);
   } catch (err) {
     res.status(400).send({
@@ -42,6 +44,7 @@ const addTasks = async (req, res, next) => {
   try {
     task = await newTask.save();
 
+    console.log("add new task OK");
     res.status(200).send({
       status: "Ok",
       task: newTask,

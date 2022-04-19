@@ -40,7 +40,7 @@ const register = async (req, res, next) => {
         });
 
         newUser = await user.save();
-        console.log("register OK");
+        console.log("register Child OK");
         res.status(200).send(newUser);
       }
     } else {
@@ -58,7 +58,7 @@ const register = async (req, res, next) => {
         });
 
         newUser = await user.save();
-        console.log("register OK");
+        console.log("register Parent OK");
         res.status(200).send(newUser);
       }
     }
