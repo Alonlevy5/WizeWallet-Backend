@@ -4,11 +4,13 @@ const childSchema = new mongoose.Schema(
   {
     _id: {
       type: Number,
-      required: true
+      required: true,
+      unique: true,
     },
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -27,8 +29,8 @@ const childSchema = new mongoose.Schema(
     },
     transactions: [
       {
-        "description": String,
-        "amount": Number,
+        description: String,
+        amount: Number,
       },
     ],
   },
