@@ -4,8 +4,6 @@ const childSchema = new mongoose.Schema(
   {
     _id: {
       type: Number,
-      required: true,
-      unique: true,
     },
     email: {
       type: String,

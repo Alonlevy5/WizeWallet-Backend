@@ -63,7 +63,11 @@ const register = async (req, res, next) => {
       }
     }
   } catch (err) {
-    sendError(res, 400, `User id is Registered already on a diffrent Email than: ${userEmail}`);
+    sendError(
+      res,
+      400,
+      `User id is Registered already on a diffrent Email than: ${userEmail}`
+    );
   }
 };
 
@@ -151,7 +155,7 @@ const refreshToken = async (req, res, next) => {
       if (user == null) return res.status(403).send("Invalid request");
       if (!user.tokens.includes(token)) {
         user.tokens = [];
-        await user.save();
+        await user.save();  
         return res.status(403).send("Invalid request");
       }
       const accessToken = await jwt.sign(
@@ -184,7 +188,9 @@ const logout = async (req, res, next) => {
 
   jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, async (err, userInfo) => {
     if (err) return res.status(403).send(err.message);
+
     const userId = userInfo._id;
+
     try {
       user = await Parent.findById(userId);
       if (user == null) return res.status(403).send("Invalid request");

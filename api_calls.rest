@@ -93,7 +93,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail11.com",
+    "email": "parent@gmail.com",
     "password": "12345"
 }
 
@@ -102,7 +102,7 @@ Content-Type: application/json
 //  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NDg1fQ.jcTKF37lauG7FxiIfMQHHftcY6dEEjkuKU64aggbUPU
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTAxNTFhMzEzODAwNDY3ZjQ3Y2MiLCJpYXQiOjE2NTA0NTk0OTksImV4cCI6MTY1MDQ2MzA5OX0.UnjzYG2NpX89j4hOhUYWX8Yq8j2Sa8NtftTfWoPt-oI
 
 Content-Type: application/json
 
