@@ -22,7 +22,7 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaW
 //  -------------------  Add Tasks ------------------------
 
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkYmViZmJhZDQzZWM2N2UxN2FlZGYiLCJpYXQiOjE2NTAzODE1ODgsImV4cCI6MTY1MDM4NTE4OH0._Fe8u_jznseRf0KXjHEJO80b01MDRqKNGlePWS9Ewgk
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTAxNTFhMzEzODAwNDY3ZjQ3Y2MiLCJpYXQiOjE2NTAzODY4MTIsImV4cCI6MTY1MDM5MDQxMn0.oGFYcnVQPJZ_xDLoPm7VS9PfQrMwexksj9HSeBoBBbE
 Content-Type: application/json
 
 {
@@ -32,6 +32,34 @@ Content-Type: application/json
 }
 
 
+
+###
+//  -------------------  Get All Tasks  ------------------------
+
+GET http://localhost:3000/task
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NzMzLCJleHAiOjE2NTAzOTIzMzN9.ekjQaM7XYa-0WwS3Y70aEdiP1BlEEwjGCwLpxpmEzJg
+
+Content-Type:application/json
+
+
+###
+
+//  -------------------  Add Transaction ------------------------
+POST  http://localhost:3000/transaction
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzkwMjI4LCJleHAiOjE2NTAzOTM4Mjh9.CUhkdXE4H54TD7DYPqs129rZ4gjMU_GIrWtHYTJBWuA
+Content-Type:application/json
+
+{   
+    "amount": 50,
+    "description": "gift for Pesah"
+}
+
+
+
+
+
+
+
 //  -------------------  Auth ------------------------
 ###
 //  -------------------  Parent Register ------------------------
@@ -39,7 +67,7 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {   
-    "email": "test@gmail.com",
+    "email": "parent@gmail.com",
     "password": "12345"
 }
 
@@ -50,10 +78,10 @@ Content-Type: application/json
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{   "_id": 123456,
-    "balance": 200,
-    "email": "test@gmail11.com",
-    "password": "12345"
+{   "_id": "3065465",
+    "balance": 300,
+    "email": "child@gmail.com",
+    "password": "54321"
 }
 
 ###
@@ -74,7 +102,7 @@ Content-Type: application/json
 //  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNjhkM2I3ZjIzNGNiYTU2MDBmNGEiLCJpYXQiOjE2NTAyMjMzMzF9.yJTSyPOsR__jYwKSFlNCFYL4NopAchQVRnLW564GgPs
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NDg1fQ.jcTKF37lauG7FxiIfMQHHftcY6dEEjkuKU64aggbUPU
 
 Content-Type: application/json
 
@@ -87,7 +115,7 @@ Content-Type: application/json
 //  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/refreshtoken
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUyZjdlZTExMmQ5ODVhZmExOTllNDkiLCJpYXQiOjE2NDk2MDQ1OTN9.yYQ489MbOLLOJCUQvJIEL8l95MCC1LvXzWM8_FxVbiE
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NDg1fQ.jcTKF37lauG7FxiIfMQHHftcY6dEEjkuKU64aggbUPU
 Content-Type: application/json
 
 {
