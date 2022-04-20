@@ -43,7 +43,7 @@ Content-Type:application/json
 
 //  -------------------  Add Transaction ------------------------
 POST  http://localhost:3000/transaction
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NzMzLCJleHAiOjE2NTAzOTIzMzN9.ekjQaM7XYa-0WwS3Y70aEdiP1BlEEwjGCwLpxpmEzJg
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzkwMjI4LCJleHAiOjE2NTAzOTM4Mjh9.CUhkdXE4H54TD7DYPqs129rZ4gjMU_GIrWtHYTJBWuA
 Content-Type:application/json
 
 {   

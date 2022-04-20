@@ -48,7 +48,7 @@ const addTransaction = async (req, res, next) => {
   };
 
   try {
-    const id = req.body.id; 
+    const id = req.user._id; 
     const child = await Child.findOne({ _id: id });
     if (child == null) return sendError(res, 400, "Wrong email or password");
 
