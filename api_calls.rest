@@ -65,13 +65,13 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail11.com",
-    "password": "12345"
+    "email": "alon@gmail.com",
+    "password": "123456"
 }
 
 
 ###
-//  -------------------  Refresh Token Not implemented Yet ------------------------
+//  -------------------  Logout Not implemented Yet for child ------------------------
 
 POST http://localhost:3000/auth/logout
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVjNjhkM2I3ZjIzNGNiYTU2MDBmNGEiLCJpYXQiOjE2NTAyMjMzMzF9.yJTSyPOsR__jYwKSFlNCFYL4NopAchQVRnLW564GgPs
@@ -93,4 +93,24 @@ Content-Type: application/json
 {
     "message": "Logout",
     "status": 200
+}
+
+###
+//  -------------------  Linking Parent to KIDS ------------------------
+//  -------------------  You must be logged in to parent(authenticated)  ------------------------
+//  -------------------  Get All kids for the logged parent ------------------------
+GET http://localhost:3000/link
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTNkY2VmMjA3YzEwOTkzY2FiZGUiLCJpYXQiOjE2NTA3MDUyNDUsImV4cCI6MTY1MDcwODg0NX0.rapjdclfK4K3o3uKYGL6RsQJd7JVqix0s9T5RGHNS3E
+Content-Type: application/json
+
+
+###
+//  -------------------  ADD KID API for the logged parent ------------------------
+
+POST http://localhost:3000/link
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTNkY2VmMjA3YzEwOTkzY2FiZGUiLCJpYXQiOjE2NTA3MDUyNDUsImV4cCI6MTY1MDcwODg0NX0.rapjdclfK4K3o3uKYGL6RsQJd7JVqix0s9T5RGHNS3E
+Content-Type: application/json
+
+{
+    "id": "1234561"
 }

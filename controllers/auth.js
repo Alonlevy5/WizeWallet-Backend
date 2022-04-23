@@ -203,6 +203,7 @@ const logout = async (req, res, next) => {
   });
 };
 
+
 module.exports = {
   login,
   register,

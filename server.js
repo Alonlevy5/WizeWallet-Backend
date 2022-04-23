@@ -55,4 +55,7 @@ app.use("/task", taskRouter);
 const authRouter = require("./routes/auth_routes");
 app.use("/auth", authRouter);
 
+const linkRouter = require ("./routes/link_routes")
+app.use('/link', linkRouter)
+
 module.exports = app;
