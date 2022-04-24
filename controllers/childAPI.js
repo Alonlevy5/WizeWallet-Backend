@@ -49,6 +49,7 @@ const updateBalance = async (req, res, next) => {
     res.status(200).send({
       status: "Ok",
       message: "updated child's balance",
+      balance: newBalance
     });
   } catch (err) {
     res.status(400).send({
@@ -82,6 +83,7 @@ const addTransaction = async (req, res, next) => {
     res.status(200).send({
       status: "Ok",
       message: "new transactiopn is added to child",
+      trans: newTransaction,
     });
   } catch (err) {
     res.status(400).send({
