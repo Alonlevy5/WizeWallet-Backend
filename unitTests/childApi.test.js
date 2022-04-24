@@ -30,6 +30,26 @@ describe("Testing Child's API", () => {
   let userId = "";
   const amount = 30;
 
+  test("Test Child Registration", async () => {
+    const response = await request(app).post("/auth/register").send({
+      email: email,
+      password: pwd,
+    });
+    expect(response.statusCode).toEqual(200);
+    userId = response.body._id;
+  });
+
+
+  test("Test Child login", async () => {
+    const response = await request(app).post("/auth/login").send({
+      'email': email,
+      'password': pwd,
+    });
+    expect(response.statusCode).toEqual(200);
+    accessToken = response.body.accessToken;
+  });
+
+
   test("GET transactions", async () => {
     const response = await request(app)
       .get("/child/transactions")
