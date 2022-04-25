@@ -155,7 +155,7 @@ const refreshToken = async (req, res, next) => {
       if (user == null) return res.status(403).send("Invalid request");
       if (!user.tokens.includes(token)) {
         user.tokens = [];
-        await user.save();  
+        await user.save();
         return res.status(403).send("Invalid request");
       }
       const accessToken = await jwt.sign(
@@ -191,20 +191,38 @@ const logout = async (req, res, next) => {
 
     const userId = userInfo._id;
 
-    try {
-      user = await Parent.findById(userId);
-      if (user == null) return res.status(403).send("Invalid request");
-      if (!user.tokens.includes(token)) {
-        user.tokens = [];
-        await user.save();
-        return res.status(403).send("Invalid request");
+    if (typeof userId === "number") {
+      try {
+        const child = await Child.findById(userId);
+        if (child == null) return res.status(403).send("Invalid request");
+        if (!child.tokens.includes(token)) {
+          child.tokens = [];
+          await child.save();
+          return res.status(403).send("Invalid request");
+        }
+        child.tokens.splice(child.tokens.indexOf(token), 1);
+        await child.save();
+        console.log("logout OK");
+        res.status(200).send("You loged out!");
+      } catch (err) {
+        res.status(403).send(err.message);
       }
-      user.tokens.splice(user.tokens.indexOf(token), 1);
-      await user.save();
-      console.log("logout OK");
-      res.status(200).send("You loged out!");
-    } catch (err) {
-      res.status(403).send(err.message);
+    } else {
+      try {
+        const parent = await Parent.findById(userId);
+        if (parent == null) return res.status(403).send("Invalid request");
+        if (!parent.tokens.includes(token)) {
+          parent.tokens = [];
+          await parent.save();
+          return res.status(403).send("Invalid request");
+        }
+        parent.tokens.splice(parent.tokens.indexOf(token), 1);
+        await parent.save();
+        console.log("logout OK");
+        res.status(200).send("You loged out!");
+      } catch (err) {
+        res.status(403).send(err.message);
+      }
     }
   });
 };

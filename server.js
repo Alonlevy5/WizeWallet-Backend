@@ -52,8 +52,8 @@ app.use("/", indexRouter);
 const taskRouter = require("./routes/task_routes");
 app.use("/task", taskRouter);
 
-const childTransRouter = require("./routes/child_transaction_routes");
-app.use("/transaction", childTransRouter);
+const childTransRouter = require("./routes/child_routes");
+app.use("/child", childTransRouter);
 
 const authRouter = require("./routes/auth_routes");
 app.use("/auth", authRouter);

@@ -9,10 +9,9 @@ function sendError(res, code, msg) {
 
 const getTransactions = async (req, res, next) => {
   console.log("getTransactions");
-
   try {
     const id = req.user._id;
-    transactions = await child.findById(id).select({ transactions });
+    transactions = await Child.findById(id).select("transactions");
     res.status(200).send(transactions);
   } catch (err) {
     res.status(400).send({
@@ -22,12 +21,36 @@ const getTransactions = async (req, res, next) => {
   }
 };
 
-const getTasksById = async (req, res, next) => {
-  console.log("getTasksById");
-
+const getBalance = async (req, res, next) => {
+  console.log("getBalance");
   try {
-    tasks = await Task.findById(req.params.id);
-    res.status(200).send(tasks);
+    const id = req.user._id;
+    balance = await Child.findById(id).select("balance");
+    res.status(200).send(balance);
+  } catch (err) {
+    res.status(400).send({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+const updateBalance = async (req, res, next) => {
+  console.log("updateBalance");
+  const newBalance = req.body.balance;
+  try {
+    const id = req.user._id;
+    const child = await Child.findOne({ _id: id });
+    if (child == null) return sendError(res, 400, "Wrong email or password");
+
+    child.balance = newBalance;
+    const result = await child.save();
+
+    res.status(200).send({
+      status: "Ok",
+      message: "updated child's balance",
+      balance: newBalance
+    });
   } catch (err) {
     res.status(400).send({
       status: "fail",
@@ -37,6 +60,7 @@ const getTasksById = async (req, res, next) => {
 };
 
 const addTransaction = async (req, res, next) => {
+  // also updates child's balance
   console.log("addTransaction");
 
   const description = req.body.description;
@@ -48,7 +72,7 @@ const addTransaction = async (req, res, next) => {
   };
 
   try {
-    const id = req.user._id; 
+    const id = req.user._id; // (Parent is ment to send his child money)
     const child = await Child.findOne({ _id: id });
     if (child == null) return sendError(res, 400, "Wrong email or password");
 
@@ -58,7 +82,8 @@ const addTransaction = async (req, res, next) => {
 
     res.status(200).send({
       status: "Ok",
-      message: "A new transactiopn is added to child",
+      message: "new transactiopn is added to child",
+      trans: newTransaction,
     });
   } catch (err) {
     res.status(400).send({
@@ -68,4 +93,9 @@ const addTransaction = async (req, res, next) => {
   }
 };
 
-module.exports = { getTransactions, addTransaction };
+module.exports = {
+  getTransactions,
+  addTransaction,
+  getBalance,
+  updateBalance,
+};

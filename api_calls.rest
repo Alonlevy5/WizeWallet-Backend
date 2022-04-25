@@ -19,7 +19,7 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaW
 
 ###
 
-//  -------------------  Add Tasks ------------------------
+//-------------------  Add Tasks ------------------------
 
 POST http://localhost:3000/task
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTAxNTFhMzEzODAwNDY3ZjQ3Y2MiLCJpYXQiOjE2NTAzODY4MTIsImV4cCI6MTY1MDM5MDQxMn0.oGFYcnVQPJZ_xDLoPm7VS9PfQrMwexksj9HSeBoBBbE
@@ -33,20 +33,13 @@ Content-Type: application/json
 
 
 
-###
-//  -------------------  Get All Tasks  ------------------------
-
-GET http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NzMzLCJleHAiOjE2NTAzOTIzMzN9.ekjQaM7XYa-0WwS3Y70aEdiP1BlEEwjGCwLpxpmEzJg
-
-Content-Type:application/json
-
 
 ###
-
-//  -------------------  Add Transaction ------------------------
-POST  http://localhost:3000/transaction
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzkwMjI4LCJleHAiOjE2NTAzOTM4Mjh9.CUhkdXE4H54TD7DYPqs129rZ4gjMU_GIrWtHYTJBWuA
+//                           Child                    
+//----------------------------------------------------------------
+//  -------------------  Add Transaction  ------------------------
+POST  http://localhost:3000/child/transactions
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDc5MjgxMCwiZXhwIjoxNjUwNzk2NDEwfQ.HV4KYBjWLZkyCrgQk1B43g3xyuxDprffRVu0TdBCirk
 Content-Type:application/json
 
 {   
@@ -55,13 +48,46 @@ Content-Type:application/json
 }
 
 
-
-
-
-
-
-//  -------------------  Auth ------------------------
 ###
+//  -------------------  Get All Transactions  ------------------------
+
+GET http://localhost:3000/child/transactions
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDgwNjA3NCwiZXhwIjoxNjUwODA5Njc0fQ.do1tB3CSEpxghbwi5QnTrn33L5TK37uxgBB-alj3Efo
+Content-Type:application/json
+
+
+
+
+###
+//  -------------------  Get Balance  ------------------------
+
+GET http://localhost:3000/child/balance
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDgwNjA3NCwiZXhwIjoxNjUwODA5Njc0fQ.do1tB3CSEpxghbwi5QnTrn33L5TK37uxgBB-alj3Efo
+Content-Type:application/json
+
+
+###
+//  -------------------  Update Balance  ------------------------
+
+post http://localhost:3000/child/balance
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDgwNjA3NCwiZXhwIjoxNjUwODA5Njc0fQ.do1tB3CSEpxghbwi5QnTrn33L5TK37uxgBB-alj3Efo
+Content-Type:application/json
+
+{
+ "balance": 600
+}
+
+
+
+
+
+
+
+
+
+###
+//  -------------------      Auth   ------------------------
+//
 //  -------------------  Parent Register ------------------------
 POST http://localhost:3000/auth/register
 Content-Type: application/json
@@ -78,7 +104,7 @@ Content-Type: application/json
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{   "_id": "3065465",
+{   "_id": 3065465,
     "balance": 300,
     "email": "child@gmail.com",
     "password": "54321"
@@ -93,16 +119,16 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "parent@gmail.com",
-    "password": "12345"
+    "email": "child@gmail.com",
+    "password": "54321"
 }
 
 
 ###
-//  -------------------  Logout Not implemented Yet for child ------------------------
+//  -------------------  Logout: Same for both Parent and Child ------------------------
 
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTAxNTFhMzEzODAwNDY3ZjQ3Y2MiLCJpYXQiOjE2NTA0NTk0OTksImV4cCI6MTY1MDQ2MzA5OX0.UnjzYG2NpX89j4hOhUYWX8Yq8j2Sa8NtftTfWoPt-oI
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDQ3OTQ5N30.zZwUnyWtirUMrbFP3I8T5oM1vpvobfzl35Lj71LfPrg
 
 Content-Type: application/json
 

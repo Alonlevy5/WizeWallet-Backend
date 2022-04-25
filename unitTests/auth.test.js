@@ -81,14 +81,6 @@ describe("Testing Auth API", () => {
     expect(response.statusCode).not.toEqual(200)
   })
   
-  // jest.setTimeout(30000)
-  // test('Timeout access', async () => {
-  //   await new Promise(r => setTimeout(r, 3*1000 ))
-  //   const response = await request(app).get('/task')
-  //   .set({authorization : 'JWT ' + accessToken})
-  //   expect(response.statusCode).not.toEqual(200)
-  // })
-
   test('Refresh Token', async () => {
     const response = await request(app).post('/auth/refreshToken')
     .set({authorization : 'JWT ' + refreshToken})
@@ -97,4 +89,17 @@ describe("Testing Auth API", () => {
     expect(newAccessToken).not.toEqual(null)
     expect(newRefreshToken).not.toEqual(null)
   })
+
+
+
+  // TODO: implement logout testing function
+  test('logout', async () => {
+    const response = await request(app).post('/auth/logout')
+    .set({authorization : 'JWT ' + refreshToken})
+    newAccessToken = response.body.accessToken
+    newRefreshToken = response.body.refreshToken
+    expect(newAccessToken).not.toEqual(null)
+    expect(newRefreshToken).not.toEqual(null)
+  })
+
 });
