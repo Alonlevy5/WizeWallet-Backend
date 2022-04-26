@@ -3,13 +3,17 @@ const app = require("../server");
 const mongoose = require("mongoose");
 const { response } = require("../server");
 
-const Parent = require("../models/parent_model");
 const Child = require("../models/child_model");
 
 const email = "child@gmail.com";
 const pwd = "54321";
 const balance = 400;
-const _id = 3065465;
+const id = 3065465;
+
+const desc = "Purim Gift!";
+let accessToken = "";
+let userId = "";
+const amount = 30;
 
 beforeAll((done) => {
   Child.remove({ email: email }, (err) => {
@@ -25,36 +29,24 @@ afterAll((done) => {
 });
 
 describe("Testing Child's API", () => {
-  const desc = "Purim Gift!";
-  let accessToken = "";
-  let userId = "";
-  const amount = 30;
-
   test("Test Child Registration", async () => {
     const response = await request(app).post("/auth/register").send({
       email: email,
       password: pwd,
+      balance: balance,
+      _id: id,
     });
     expect(response.statusCode).toEqual(200);
     userId = response.body._id;
   });
 
-
   test("Test Child login", async () => {
     const response = await request(app).post("/auth/login").send({
-      'email': email,
-      'password': pwd,
+      email: email,
+      password: pwd,
     });
     expect(response.statusCode).toEqual(200);
     accessToken = response.body.accessToken;
-  });
-
-
-  test("GET transactions", async () => {
-    const response = await request(app)
-      .get("/child/transactions")
-      .set({ authorization: "JWT " + accessToken });
-    expect(response.statusCode).toEqual(200);
   });
 
   test("Add new transaction", async () => {
@@ -63,7 +55,7 @@ describe("Testing Child's API", () => {
       .set({ authorization: "JWT " + accessToken })
       .send({
         amount: amount,
-        description: taskMessage,
+        description: desc,
       });
 
     expect(response.statusCode).toEqual(200);
@@ -71,22 +63,31 @@ describe("Testing Child's API", () => {
     const newTransaction = response.body.trans;
     expect(newTransaction.description).toEqual(desc);
     expect(newTransaction.amount).toEqual(amount);
+  });
+  test("GET transactions", async () => {
+    const response = await request(app)
+      .get("/child/transactions")
+      .set({ authorization: "JWT " + accessToken });
+    expect(response.statusCode).toEqual(200);
+  });
 
-    test("GET blance", async () => {
-      const response = await request(app)
-        .get("/child/balance")
-        .set({ authorization: "JWT " + accessToken });
-      expect(response.statusCode).toEqual(200);
-    });
+  test("GET blance", async () => {
+    const response = await request(app)
+      .get("/child/balance")
+      .set({ authorization: "JWT " + accessToken });
+    expect(response.statusCode).toEqual(200);
+  });
 
-    test("POST updateBlance", async () => {
-      const response = await request(app).post("/child/balance").send({
+  test("POST updateBlance", async () => {
+    const response = await request(app)
+      .post("/child/balance")
+      .set({ authorization: "JWT " + accessToken })
+      .send({
         balance: balance,
       });
-      expect(response.statusCode).toEqual(200);
+    expect(response.statusCode).toEqual(200);
 
-      const resBalance = response.body.balance;
-      expect(resBalance).toEqual(balance);
-    });
+    const resBalance = response.body.balance;
+    expect(resBalance).toEqual(balance);
   });
 });

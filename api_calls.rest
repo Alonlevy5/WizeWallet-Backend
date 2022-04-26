@@ -1,10 +1,10 @@
 ###
-//  -------------------  Check Routing ------------------------
+//  -------------------  Check Routing ----------------------------
 
 GET http://localhost:3000/
 
 ###
-//  -------------------  Get All Tasks  ------------------------
+//  -------------------  Get All Tasks  ----------------------------
 
 GET http://localhost:3000/task
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjUwMzg4NTU0LCJleHAiOjE2NTAzOTIxNTR9.U3mC_s5fCT7pDXEci5rb71i_tq-lzWRlyDsaIP_iH30
@@ -39,12 +39,12 @@ Content-Type: application/json
 //----------------------------------------------------------------
 //  -------------------  Add Transaction  ------------------------
 POST  http://localhost:3000/child/transactions
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDc5MjgxMCwiZXhwIjoxNjUwNzk2NDEwfQ.HV4KYBjWLZkyCrgQk1B43g3xyuxDprffRVu0TdBCirk
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1NywiZXhwIjoxNjUwOTc2NTU3fQ.IoLU6mdPdXcwj17ej5MYXDXZqye3pfXHFlSRDGL1DQw
 Content-Type:application/json
 
 {   
-    "amount": 50,
-    "description": "gift for Pesah"
+    "amount": 3,
+    "description": "got back 3 nis for strawberies"
 }
 
 
@@ -52,7 +52,7 @@ Content-Type:application/json
 //  -------------------  Get All Transactions  ------------------------
 
 GET http://localhost:3000/child/transactions
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDgwNjA3NCwiZXhwIjoxNjUwODA5Njc0fQ.do1tB3CSEpxghbwi5QnTrn33L5TK37uxgBB-alj3Efo
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1NywiZXhwIjoxNjUwOTc2NTU3fQ.IoLU6mdPdXcwj17ej5MYXDXZqye3pfXHFlSRDGL1DQw
 Content-Type:application/json
 
 
@@ -62,7 +62,7 @@ Content-Type:application/json
 //  -------------------  Get Balance  ------------------------
 
 GET http://localhost:3000/child/balance
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDgwNjA3NCwiZXhwIjoxNjUwODA5Njc0fQ.do1tB3CSEpxghbwi5QnTrn33L5TK37uxgBB-alj3Efo
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1NywiZXhwIjoxNjUwOTc2NTU3fQ.IoLU6mdPdXcwj17ej5MYXDXZqye3pfXHFlSRDGL1DQw
 Content-Type:application/json
 
 
@@ -70,11 +70,11 @@ Content-Type:application/json
 //  -------------------  Update Balance  ------------------------
 
 post http://localhost:3000/child/balance
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDgwNjA3NCwiZXhwIjoxNjUwODA5Njc0fQ.do1tB3CSEpxghbwi5QnTrn33L5TK37uxgBB-alj3Efo
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1NywiZXhwIjoxNjUwOTc2NTU3fQ.IoLU6mdPdXcwj17ej5MYXDXZqye3pfXHFlSRDGL1DQw
 Content-Type:application/json
 
 {
- "balance": 600
+ "balance": 125
 }
 
 
@@ -128,7 +128,7 @@ Content-Type: application/json
 //  -------------------  Logout: Same for both Parent and Child ------------------------
 
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDQ3OTQ5N30.zZwUnyWtirUMrbFP3I8T5oM1vpvobfzl35Lj71LfPrg
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1N30.X8y6LQxw9rSELLra-2Ydyyc94Y4YIqY-Pz-7sWyQA8A
 
 Content-Type: application/json
 
