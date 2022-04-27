@@ -97,9 +97,10 @@ Content-Type: application/json
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
-{   "_id": 3065465,
+{   
+    "_id": 30654265,
     "balance": 300,
-    "email": "child@gmail.com",
+    "email": "childfsdfsdf@gmail122.com",
     "password": "54321"
 }
 
@@ -112,7 +113,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@test1.com",
+    "email": "parent@gmail.com",
     "password": "12345"
 }
 
@@ -133,7 +134,7 @@ Content-Type: application/json
 //  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/refreshtoken
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIzMDY1NDY1IiwiaWF0IjoxNjUwMzg4NDg1fQ.jcTKF37lauG7FxiIfMQHHftcY6dEEjkuKU64aggbUPU
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MTA3ODgzMn0.zy7nD722Epholag9Misn7UtoZApEx8WOZfENGuNyzBk
 Content-Type: application/json
 
 {

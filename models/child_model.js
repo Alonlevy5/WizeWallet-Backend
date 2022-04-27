@@ -4,6 +4,7 @@ const childSchema = new mongoose.Schema(
   {
     _id: {
       type: Number,
+      required: true,
     },
     email: {
       type: String,

@@ -1,5 +1,5 @@
 const Parent = require("../models/parent_model");
-const bcrypt = require("bcrypt"); 
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Child = require("../models/child_model");
 
@@ -142,6 +142,7 @@ const login = async (req, res, next) => {
 };
 
 const refreshToken = async (req, res, next) => {
+  //Need to give refreshToken to get new AccessToken
   console.log("refreshToken");
   authHeaders = req.headers["authorization"];
   const token = authHeaders && authHeaders.split(" ")[1];
@@ -150,31 +151,60 @@ const refreshToken = async (req, res, next) => {
   jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, async (err, userInfo) => {
     if (err) return res.status(403).send(err.message);
     const userId = userInfo._id;
-    try {
-      user = await Parent.findById(userId);
-      if (user == null) return res.status(403).send("Invalid request");
-      if (!user.tokens.includes(token)) {
-        user.tokens = [];
-        await user.save();
-        return res.status(403).send("Invalid request");
-      }
-      const accessToken = await jwt.sign(
-        { _id: user._id },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
-      );
-      const refreshToken = await jwt.sign(
-        { _id: user._id },
-        process.env.REFRESH_TOKEN_SECRET
-      );
+    if (typeof userId === "number") {
+      try {
+        child = await Child.findById(userId);
+        if (child == null) return res.status(403).send("Invalid request");
+        if (!child.tokens.includes(token)) {
+          child.tokens = [];
+          await child.save();
+          return res.status(403).send("Invalid request/Cleared all Tokens");
+        }
+        const accessToken = await jwt.sign(
+          { _id: child._id },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
+        );
+        const refreshToken = await jwt.sign(
+          { _id: child._id },
+          process.env.REFRESH_TOKEN_SECRET
+        );
 
-      user.tokens[user.tokens.indexOf(token)] = refreshToken;
-      await user.save();
-      res
-        .status(200)
-        .send({ accessToken: accessToken, refreshToken: refreshToken });
-    } catch (err) {
-      res.status(403).send(err.message);
+        child.tokens[child.tokens.indexOf(token)] = refreshToken;
+        await child.save();
+        res
+          .status(200)
+          .send({ accessToken: accessToken, refreshToken: refreshToken });
+      } catch (err) {
+        res.status(403).send(err.message);
+      }
+    } else {
+      try {
+        parent = await Parent.findById(userId);
+        if (parent == null) return res.status(403).send("Invalid request");
+        if (!parent.tokens.includes(token)) {
+          parent.tokens = [];
+          await parent.save();
+          return res.status(403).send("Invalid request/Cleared all Tokens");
+        }
+        const accessToken = await jwt.sign(
+          { _id: parent._id },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
+        );
+        const refreshToken = await jwt.sign(
+          { _id: parent._id },
+          process.env.REFRESH_TOKEN_SECRET
+        );
+
+        parent.tokens[parent.tokens.indexOf(token)] = refreshToken;
+        await parent.save();
+        res
+          .status(200)
+          .send({ accessToken: accessToken, refreshToken: refreshToken });
+      } catch (err) {
+        res.status(403).send(err.message);
+      }
     }
   });
 };
@@ -191,7 +221,7 @@ const logout = async (req, res, next) => {
 
     const userId = userInfo._id;
 
-    if (typeof userId === 'number') {
+    if (typeof userId === "number") {
       try {
         const child = await Child.findById(userId);
         if (child == null) return res.status(403).send("No Child found");
