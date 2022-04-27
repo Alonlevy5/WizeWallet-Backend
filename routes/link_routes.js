@@ -4,8 +4,72 @@ const router = express.Router();
 const Link = require("../controllers/link");
 const authenticate = require("../common/auth_middleware");
 
+/**
+ * @swagger
+ * tags:
+ *   name: Link Api 
+ *   description: Api for linking children to parents
+*/
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Children Array:
+ *       type: object
+ *       required:
+ *         - id
+ *       properties:
+ *         id:
+ *           type: array
+ *           items:
+ *             type: number
+ *           description: Refrence to kid REAL ID!
+ *       example:
+ *         id: 123456
+ */
+
+
+
+/**
+ * @swagger
+ * /link:
+ *   get:
+ *     summary: Get all kids linked to authorized parent
+ *     tags: [Link Api]
+ *     responses:
+ *       200:
+ *         description: The Children list
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Children Array'
+ */
 router.get("/", authenticate, Link.getKids);
 
+
+/**
+ * @swagger
+ * /link:
+ *   post:
+ *     summary: Link a child to parent
+ *     tags: [Link Api]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Children Array'
+ *     responses:
+ *       200:
+ *         description: The new linked child
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Children Array'
+ */
 router.post("/", authenticate, Link.addKids);
 
 module.exports = router;

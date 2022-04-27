@@ -6,7 +6,7 @@ const Auth = require("../controllers/auth");
 /**
  * @swagger
  * tags:
- *   name: Auth 
+ *   name: Auth Api
  *   description: The Authentication API
 */
 
@@ -62,7 +62,7 @@ const Auth = require("../controllers/auth");
 * /auth/register:
 *   post:
 *     summary: Registers a new user
-*     tags: [Auth]
+*     tags: [Auth Api]
 *     requestBody:
 *       required: true
 *       content:
@@ -86,7 +86,7 @@ router.post("/register", Auth.register);
 * /auth/login:
 *   post:
 *     summary: Login with auth
-*     tags: [Auth]
+*     tags: [Auth Api]
 *     requestBody:
 *       required: true
 *       content:
@@ -109,7 +109,7 @@ router.post("/login", Auth.login);
 * /auth/logout:
 *   post:
 *     summary: User logout
-*     tags: [Auth]
+*     tags: [Auth Api]
 *     description: Need to provide the Refresh Token in the auth header
 *     security:
 *       - bearerAuth: []
@@ -125,7 +125,7 @@ router.post("/logout", Auth.logout);
 * /auth/refreshToken:
 *   post:
 *     summary: Get a new access token using the Refresh Token
-*     tags: [Auth]
+*     tags: [Auth Api]
 *     description: Need to provide the refresh token in the auth header
 *     security:
 *       - bearerAuth: []
