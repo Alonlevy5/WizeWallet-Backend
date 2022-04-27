@@ -41,14 +41,14 @@ const updateBalance = async (req, res, next) => {
   try {
     const id = req.user._id;
     const child = await Child.findOne({ _id: id });
-    if (child == null) return sendError(res, 400, "Wrong email or password");
+    if (child == null) return sendError(res, 400, "No Child found.");
 
-    child.balance = newBalance;
+    child.balance += newBalance;
     const result = await child.save();
 
     res.status(200).send({
       status: "Ok",
-      message: "updated child's balance",
+      message: "Updated child's balance",
       balance: newBalance
     });
   } catch (err) {
@@ -72,9 +72,9 @@ const addTransaction = async (req, res, next) => {
   };
 
   try {
-    const id = req.user._id; // (Parent is ment to send his child money)
+    const id = req.user._id; 
     const child = await Child.findOne({ _id: id });
-    if (child == null) return sendError(res, 400, "Wrong email or password");
+    if (child == null) return sendError(res, 400, "No Child found");
 
     child.transactions.push(newTransaction);
     child.balance += newTransaction.amount;
@@ -82,8 +82,8 @@ const addTransaction = async (req, res, next) => {
 
     res.status(200).send({
       status: "Ok",
-      message: "new transactiopn is added to child",
-      trans: newTransaction,
+      message: "new transactiopn is added to child & the balance is updated acordingley",
+      transaction: newTransaction,
     });
   } catch (err) {
     res.status(400).send({

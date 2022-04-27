@@ -21,8 +21,6 @@ const authenticate = require("../common/auth_middleware");
  *         - kidid
  *         - message
  *         - amount
- *         - sender
- *         - isCompleted
  *       properties:
  *         kidid:
  *           type: number

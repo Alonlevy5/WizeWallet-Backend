@@ -6,7 +6,7 @@ const Auth = require("../controllers/auth");
 /**
  * @swagger
  * tags:
- *   name: Auth
+ *   name: Auth 
  *   description: The Authentication API
 */
 

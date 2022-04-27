@@ -7,9 +7,9 @@ const authenticate = require("../common/auth_middleware");
 /**
  * @swagger
  * tags:
- *   name: Child's API
+ *   name: Child Api
  *   description: Child's API
- */
+*/
 
 /**
  * @swagger
@@ -18,8 +18,10 @@ const authenticate = require("../common/auth_middleware");
  *     Child:
  *       type: object
  *       required:
+ *         - id
  *         - email
  *         - password
+ *         - balance
  *       properties:
  *         id:
  *           type: number
@@ -30,14 +32,44 @@ const authenticate = require("../common/auth_middleware");
  *         password:
  *           type: string
  *           description: child's pwd
- *         tokens:
- *           type: string array
- *           
- *           description: array of Tokens
+ *         balance:
+ *           type: string
+ *           description: the child's balance
  *         isCompleted:
  *           type: boolean
  *           description: Is the task completed
+ *         tokens:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Array of Tokens
+ *       example:
+ *         _id: 123456
+ *         email: 'child@gmail.com'
+ *         password: '123456'
+ *         balance: 500
  */
+
+/**
+* @swagger
+* components:
+*   schemas:
+*     Transactions:
+*       type: object
+*       required:
+*         - amount
+*         - description
+*       properties:
+*         amount:
+*           type: number
+*           description: The Amount Added/dedcuted
+*         description:
+*           type: string
+*           description: Description of the transaction
+*       example:
+*         amount: 500
+*         description: 'For your birthday'
+*/
 
 
 
@@ -45,7 +77,7 @@ const authenticate = require("../common/auth_middleware");
  * @swagger
  * /child/transactions:
  *   get:
- *     summary: Get all transactions
+ *     summary: Get all child transactions
  *     tags: [Child Api]
  *     responses:
  *       200:
@@ -75,14 +107,14 @@ router.get("/transactions", authenticate, childApi.getTransactions);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Child'
+ *             $ref: '#/components/schemas/Transactions'
  *     responses:
  *       200:
  *         description: The new transaction
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Child'
+ *               $ref: '#/components/schemas/Transactions'
  */
 
 router.post("/transactions", authenticate, childApi.addTransaction);

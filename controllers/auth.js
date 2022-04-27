@@ -1,5 +1,5 @@
 const Parent = require("../models/parent_model");
-const bcrypt = require("bcrypt"); // for encryption
+const bcrypt = require("bcrypt"); 
 const jwt = require("jsonwebtoken");
 const Child = require("../models/child_model");
 
@@ -191,42 +191,41 @@ const logout = async (req, res, next) => {
 
     const userId = userInfo._id;
 
-    if (typeof userId === "number") {
+    if (typeof userId === 'number') {
       try {
         const child = await Child.findById(userId);
-        if (child == null) return res.status(403).send("Invalid request");
+        if (child == null) return res.status(403).send("No Child found");
         if (!child.tokens.includes(token)) {
           child.tokens = [];
           await child.save();
-          return res.status(403).send("Invalid request");
+          return res.status(403).send("Invalid request/Cleared all Tokens");
         }
         child.tokens.splice(child.tokens.indexOf(token), 1);
         await child.save();
         console.log("logout OK");
-        res.status(200).send("You loged out!");
+        res.status(200).send("You logged out!");
       } catch (err) {
         res.status(403).send(err.message);
       }
     } else {
       try {
         const parent = await Parent.findById(userId);
-        if (parent == null) return res.status(403).send("Invalid request");
+        if (parent == null) return res.status(403).send("No Parent found");
         if (!parent.tokens.includes(token)) {
           parent.tokens = [];
           await parent.save();
-          return res.status(403).send("Invalid request");
+          return res.status(403).send("Invalid request/Cleared all Tokens");
         }
         parent.tokens.splice(parent.tokens.indexOf(token), 1);
         await parent.save();
         console.log("logout OK");
-        res.status(200).send("You loged out!");
+        res.status(200).send("You logged out!");
       } catch (err) {
         res.status(403).send(err.message);
       }
     }
   });
 };
-
 
 module.exports = {
   login,

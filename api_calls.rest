@@ -39,12 +39,12 @@ Content-Type: application/json
 //----------------------------------------------------------------
 //  -------------------  Add Transaction  ------------------------
 POST  http://localhost:3000/child/transactions
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1NywiZXhwIjoxNjUwOTc2NTU3fQ.IoLU6mdPdXcwj17ej5MYXDXZqye3pfXHFlSRDGL1DQw
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5OTAxNjMsImV4cCI6MTY1MDk5Mzc2M30.eIJEVwFz58oHz0csFv2b90Wd_rjlWetwwpOBdO4AzFg
 Content-Type:application/json
 
 {   
-    "amount": 3,
-    "description": "got back 3 nis for strawberies"
+    "amount": 30,
+    "description": "got back 30 nis for strawberies"
 }
 
 
@@ -52,7 +52,7 @@ Content-Type:application/json
 //  -------------------  Get All Transactions  ------------------------
 
 GET http://localhost:3000/child/transactions
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1NywiZXhwIjoxNjUwOTc2NTU3fQ.IoLU6mdPdXcwj17ej5MYXDXZqye3pfXHFlSRDGL1DQw
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5OTAxNjMsImV4cCI6MTY1MDk5Mzc2M30.eIJEVwFz58oHz0csFv2b90Wd_rjlWetwwpOBdO4AzFg
 Content-Type:application/json
 
 
@@ -62,7 +62,7 @@ Content-Type:application/json
 //  -------------------  Get Balance  ------------------------
 
 GET http://localhost:3000/child/balance
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1NywiZXhwIjoxNjUwOTc2NTU3fQ.IoLU6mdPdXcwj17ej5MYXDXZqye3pfXHFlSRDGL1DQw
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5OTAxNjMsImV4cCI6MTY1MDk5Mzc2M30.eIJEVwFz58oHz0csFv2b90Wd_rjlWetwwpOBdO4AzFg
 Content-Type:application/json
 
 
@@ -70,19 +70,12 @@ Content-Type:application/json
 //  -------------------  Update Balance  ------------------------
 
 post http://localhost:3000/child/balance
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1NywiZXhwIjoxNjUwOTc2NTU3fQ.IoLU6mdPdXcwj17ej5MYXDXZqye3pfXHFlSRDGL1DQw
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5OTAxNjMsImV4cCI6MTY1MDk5Mzc2M30.eIJEVwFz58oHz0csFv2b90Wd_rjlWetwwpOBdO4AzFg
 Content-Type:application/json
 
 {
  "balance": 125
 }
-
-
-
-
-
-
-
 
 
 ###
@@ -119,8 +112,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "child@gmail.com",
-    "password": "54321"
+    "email": "test@test1.com",
+    "password": "12345"
 }
 
 
@@ -128,8 +121,7 @@ Content-Type: application/json
 //  -------------------  Logout: Same for both Parent and Child ------------------------
 
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MDk3Mjk1N30.X8y6LQxw9rSELLra-2Ydyyc94Y4YIqY-Pz-7sWyQA8A
-
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5ODkwOTF9.AR4ceqxGbquIMSf-CAsqqFgVnptdT5urfDyddoDhxsI
 Content-Type: application/json
 
 {
