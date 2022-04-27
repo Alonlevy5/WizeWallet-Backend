@@ -105,7 +105,7 @@ const login = async (req, res, next) => {
       else parent.tokens.push(refreshToken);
       await parent.save();
 
-      console.log("login OK");
+      console.log("login Parent OK");
       res.status(200).send({
         accessToken: accessToken,
         refreshToken: refreshToken,
@@ -130,7 +130,7 @@ const login = async (req, res, next) => {
       else child.tokens.push(refreshToken);
       await child.save();
 
-      console.log("login OK");
+      console.log("login Child OK");
       res.status(200).send({
         accessToken: accessToken,
         refreshToken: refreshToken,
@@ -202,7 +202,7 @@ const logout = async (req, res, next) => {
         }
         child.tokens.splice(child.tokens.indexOf(token), 1);
         await child.save();
-        console.log("logout OK");
+        console.log("logout Child OK");
         res.status(200).send("You logged out!");
       } catch (err) {
         res.status(403).send(err.message);
@@ -218,7 +218,7 @@ const logout = async (req, res, next) => {
         }
         parent.tokens.splice(parent.tokens.indexOf(token), 1);
         await parent.save();
-        console.log("logout OK");
+        console.log("logout Parent OK");
         res.status(200).send("You logged out!");
       } catch (err) {
         res.status(403).send(err.message);
