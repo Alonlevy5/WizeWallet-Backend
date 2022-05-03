@@ -12,6 +12,7 @@ const getTransactions = async (req, res, next) => {
   try {
     const id = req.user._id;
     transactions = await Child.findById(id).select("transactions");
+    console.log("get all child transactions OK");
     res.status(200).send(transactions);
   } catch (err) {
     res.status(400).send({
@@ -26,6 +27,7 @@ const getBalance = async (req, res, next) => {
   try {
     const id = req.user._id;
     balance = await Child.findById(id).select("balance");
+    console.log("get balance OK");
     res.status(200).send(balance);
   } catch (err) {
     res.status(400).send({
@@ -46,6 +48,7 @@ const updateBalance = async (req, res, next) => {
     child.balance += newBalance;
     const result = await child.save();
 
+    console.log("update balance to child OK");
     res.status(200).send({
       status: "Ok",
       message: "Updated child's balance",
@@ -79,7 +82,7 @@ const addTransaction = async (req, res, next) => {
     child.transactions.push(newTransaction);
     child.balance += newTransaction.amount;
     const result = await child.save();
-
+    console.log("transactions add to child OK");
     res.status(200).send({
       status: "Ok",
       message: "new transactiopn is added to child & the balance is updated acordingley",
