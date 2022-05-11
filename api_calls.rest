@@ -7,14 +7,14 @@ GET http://localhost:3000/
 //  -------------------  Get All Tasks  ----------------------------
 
 GET http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjUwMzg4NTU0LCJleHAiOjE2NTAzOTIxNTR9.U3mC_s5fCT7pDXEci5rb71i_tq-lzWRlyDsaIP_iH30
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY5NzZkNzBjOWY0ODBkYWI2NTU1YjEiLCJpYXQiOjE2NTEzNTA3MzQsImV4cCI6MTY1MTM1NDMzNH0.8Lrsb16LEumXua05siBIKTeK35I7Dmtn6w0S0jb2Dbs
 ###
 
 
 //  -------------------  Get Task By Kid ID' ------------------------
 
 GET http://localhost:3000/task/kid
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjUwMzg4NTU0LCJleHAiOjE2NTAzOTIxNTR9.U3mC_s5fCT7pDXEci5rb71i_tq-lzWRlyDsaIP_iH30
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjUxNjU1MDIyLCJleHAiOjE2NTE2NTg2MjJ9.vTGSYU_ukZHNljwuz5Qbmd2gPUZPKN8tD2WTgJ8PpzI
 
 
 ###
@@ -113,7 +113,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "parent@gmail.com",
+    "email": "test@gmail11.com",
     "password": "12345"
 }
 
