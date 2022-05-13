@@ -1,4 +1,5 @@
 const Child = require("../models/child_model");
+const Parent = require("../models/parent_model");
 
 function sendError(res, code, msg) {
   return res.status(code).send({
@@ -13,6 +14,30 @@ const getTransactions = async (req, res, next) => {
     const id = req.user._id;
     transactions = await Child.findById(id).select("transactions");
     console.log("get all child transactions OK");
+    res.status(200).send(transactions);
+  } catch (err) {
+    res.status(400).send({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+const getTransactionsParent = async (req, res, next) => {
+  console.log("getTransactionsParent");
+  const kidID = req.body.id
+  const loggedParent = req.user._id;
+  try {
+    parent = await Parent.findById(loggedParent).select("children")
+    // console.log(parent)
+    if(!parent.children.includes(kidID)){
+      return sendError(res, 400, "Parent dosen't contain tha KID-ID")
+    }
+    transactions = await Child.findById(kidID).select("transactions");
+    if(transactions == null || undefined){
+      return sendError(res, 400, "No Kid ID was found!")
+    }
+    console.log(`get Transactions for ${kidID} child, transactions OK`);
     res.status(200).send(transactions);
   } catch (err) {
     res.status(400).send({
@@ -101,4 +126,5 @@ module.exports = {
   addTransaction,
   getBalance,
   updateBalance,
+  getTransactionsParent
 };

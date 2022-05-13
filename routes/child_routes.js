@@ -90,6 +90,22 @@ const authenticate = require("../common/auth_middleware");
 *         balance: 500
 */
 
+/**
+* @swagger
+* components:
+*   schemas:
+*     ID:
+*       type: object
+*       required:
+*         - id
+*       properties:
+*         id:
+*           type: number
+*           description: The KID-ID
+*       example:
+*         id: 205872
+*/
+
 
 
 /**
@@ -188,5 +204,30 @@ router.get("/balance", authenticate, childApi.getBalance);
  */
 
 router.post("/balance", authenticate, childApi.updateBalance);
+
+
+/**
+ * @swagger
+ * /child/transactions/parent:
+ *   post:
+ *     summary: Parent can see kids transactions by id
+ *     tags: [Child Api]
+ *     description: Parent need to be logged need to pass access token and KID-ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ID'
+ *     responses:
+ *       200:
+ *         description: Returns The transactions for the KID-ID you passed.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ID'
+ */
+router.post("/transactions/parent", authenticate, childApi.getTransactionsParent);
+
 
 module.exports = router;

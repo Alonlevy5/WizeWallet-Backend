@@ -49,13 +49,23 @@ Content-Type:application/json
 
 
 ###
-//  -------------------  Get All Transactions  ------------------------
+//  -------------------  Get All Transactions For CHILD  ------------------------
 
 GET http://localhost:3000/child/transactions
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5OTAxNjMsImV4cCI6MTY1MDk5Mzc2M30.eIJEVwFz58oHz0csFv2b90Wd_rjlWetwwpOBdO4AzFg
 Content-Type:application/json
 
 
+###
+//  -------------------  Get All Transactions For Parent  ------------------------
+//  -------------------  You need to be logged to parent and give your Childs ID  ------------------------
+POST  http://localhost:3000/child/transactions/parent
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTNkY2VmMjA3YzEwOTkzY2FiZGUiLCJpYXQiOjE2NTI0NDk3MDQsImV4cCI6MTY1MjQ1MzMwNH0.OTX-TK2R2slM4blaxiD2mRFP7O9M3fRWil1RW9uYqms
+Content-Type:application/json
+
+{
+ "id": 1234567
+}
 
 
 ###
@@ -115,8 +125,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail11.com",
-    "password": "12345"
+    "email": "alon@gmail.com",
+    "password": "123456"
 }
 
 
