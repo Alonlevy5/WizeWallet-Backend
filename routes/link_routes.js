@@ -37,9 +37,10 @@ const authenticate = require("../common/auth_middleware");
  *   get:
  *     summary: Get all kids linked to authorized parent
  *     tags: [Link Api]
+ *     description: Get kids linked to the logged parent JUST SEND TOKEN
  *     responses:
  *       200:
- *         description: The Children list
+ *         description: Return The Updated Children list
  *         content:
  *           application/json:
  *             schema:
@@ -56,6 +57,7 @@ router.get("/", authenticate, Link.getKids);
  *   post:
  *     summary: Link a child to parent
  *     tags: [Link Api]
+ *     description: Send The KID ID you just REGIESTED!
  *     requestBody:
  *       required: true
  *       content:
@@ -64,7 +66,7 @@ router.get("/", authenticate, Link.getKids);
  *             $ref: '#/components/schemas/Children Array'
  *     responses:
  *       200:
- *         description: The new linked child
+ *         description: Returns The new linked child!
  *         content:
  *           application/json:
  *             schema:

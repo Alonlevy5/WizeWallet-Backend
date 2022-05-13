@@ -11,7 +11,6 @@ const parentSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: true,
   },
   tokens: {
     type: [String]

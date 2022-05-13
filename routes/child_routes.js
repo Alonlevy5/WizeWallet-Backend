@@ -32,6 +32,9 @@ const authenticate = require("../common/auth_middleware");
  *         password:
  *           type: string
  *           description: child's pwd
+ *         name:
+ *           type: string
+ *           description: child's name
  *         balance:
  *           type: string
  *           description: the child's balance
@@ -71,6 +74,22 @@ const authenticate = require("../common/auth_middleware");
 *         description: 'For your birthday'
 */
 
+/**
+* @swagger
+* components:
+*   schemas:
+*     Balance:
+*       type: object
+*       required:
+*         - balance
+*       properties:
+*         balance:
+*           type: number
+*           description: The Amount Added/dedcuted
+*       example:
+*         balance: 500
+*/
+
 
 
 /**
@@ -78,16 +97,16 @@ const authenticate = require("../common/auth_middleware");
  * /child/transactions:
  *   get:
  *     summary: Get all child transactions
+ *     description: Send only token from child account
  *     tags: [Child Api]
  *     responses:
  *       200:
- *         description: The transactions list
+ *         description: Return The transactions list
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Child'
  */
 
 router.get("/transactions", authenticate, childApi.getTransactions);
@@ -102,6 +121,7 @@ router.get("/transactions", authenticate, childApi.getTransactions);
  *   post:
  *     summary: Add new transaction to child, also updates his balance accordingly
  *     tags: [Child Api]
+ *     description: Adding new transactions to the child from child account
  *     requestBody:
  *       required: true
  *       content:
@@ -110,7 +130,7 @@ router.get("/transactions", authenticate, childApi.getTransactions);
  *             $ref: '#/components/schemas/Transactions'
  *     responses:
  *       200:
- *         description: The new transaction
+ *         description: Return The new transaction you added
  *         content:
  *           application/json:
  *             schema:
@@ -128,9 +148,10 @@ router.post("/transactions", authenticate, childApi.addTransaction);
  *   get:
  *     summary: Get balance
  *     tags: [Child Api]
+ *     description: Gets the childs balance just send token nothing else!
  *     responses:
  *       200:
- *         description: child's current balance
+ *         description: Returns the childs balance
  *         content:
  *           application/json:
  *             schema:
@@ -148,21 +169,22 @@ router.get("/balance", authenticate, childApi.getBalance);
  * @swagger
  * /child/balance:
  *   post:
- *     summary: set a new balance for child
+ *     summary: Add balance to child
  *     tags: [Child Api]
+ *     description: Adding new balance to child + OR -. 
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Child'
+ *             $ref: '#/components/schemas/Balance'
  *     responses:
  *       200:
- *         description: The new balance
+ *         description: Returns The updated balance.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Child'
+ *               $ref: '#/components/schemas/Balance'
  */
 
 router.post("/balance", authenticate, childApi.updateBalance);

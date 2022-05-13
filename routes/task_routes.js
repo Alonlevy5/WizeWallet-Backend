@@ -41,8 +41,6 @@ const authenticate = require("../common/auth_middleware");
  *         kidid: 123456
  *         message: 'Do your homework'
  *         amount: 150
- *         sender: 'Parrent ID'
- *         isCompleted: true
  */
 
 /**
@@ -51,9 +49,10 @@ const authenticate = require("../common/auth_middleware");
  *   get:
  *     summary: Get all tasks
  *     tags: [Task Api]
+ *     description: Just for checking we are not using this API
  *     responses:
  *       200:
- *         description: The task list
+ *         description: RETURNS ALL TASKS THAT EXSITS NOT IN USE ONLY FOR TESTING!!
  *         content:
  *           application/json:
  *             schema:
@@ -67,11 +66,12 @@ router.get("/", authenticate, Task.getTasks);
  * @swagger
  * /task/kid:
  *   get:
- *     summary: Get task by KID ID
+ *     summary: Get task by KIDID(Automaticlly)
  *     tags: [Task Api]
+ *     description: Kid need to be logged in USE GET and SEND TOKEN!
  *     responses:
  *       200:
- *         description: The task list
+ *         description: Returns The kids task list!
  *         content:
  *           application/json:
  *             schema:
@@ -87,6 +87,7 @@ router.get("/kid", authenticate, Task.getTasksBykidId);
  *   post:
  *     summary: Add new task
  *     tags: [Task Api]
+ *     description: Parent need to be logged in See example below(PUT REAL KID ID)
  *     requestBody:
  *       required: true
  *       content:
@@ -95,7 +96,7 @@ router.get("/kid", authenticate, Task.getTasksBykidId);
  *             $ref: '#/components/schemas/Task'
  *     responses:
  *       200:
- *         description: The new task
+ *         description: Returns The new task!
  *         content:
  *           application/json:
  *             schema:

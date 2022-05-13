@@ -26,6 +26,9 @@ const Auth = require("../controllers/auth");
  *         password:
  *           type: string
  *           description: The user password
+ *         name:
+ *           type: string
+ *           description: The parent name
  *         children:
  *           type: array
  *           items:
