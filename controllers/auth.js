@@ -22,6 +22,7 @@ const register = async (req, res, next) => {
 
   try {
     if (req.body.balance == "" || req.body.balance) {
+      const name = req.body.name;
       const balance = req.body.balance;
       const id = req.body._id;
       const exists = await Child.findOne({ email: userEmail });
@@ -34,6 +35,7 @@ const register = async (req, res, next) => {
 
         const user = Child({
           _id: id,
+          name: name,
           email: userEmail,
           password: hashPassword,
           balance: balance,
@@ -66,7 +68,7 @@ const register = async (req, res, next) => {
     sendError(
       res,
       400,
-      `User id is Registered already on a diffrent Email than: ${userEmail}`
+      `User id is Registered already on a diffrent Email than: ${userEmail} or your missing some Required Fields`
     );
   }
 };
