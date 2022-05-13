@@ -86,8 +86,9 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {   
-    "email": "parent@gmail.com",
-    "password": "12345"
+    "email": "parent@gmail1.com",
+    "password": "123451",
+    "name": "NISIM"
 }
 
 ###
@@ -98,10 +99,10 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {   
-    "_id": 205872111,
+    "_id": 20587211,
     "name": "Alon",
     "balance": 300,
-    "email": "a@gmail1.com",
+    "email": "a@gmail11111a.com",
     "password": "12345"
 }
 

@@ -15,6 +15,7 @@ const register = async (req, res, next) => {
 
   const userEmail = req.body.email;
   const userPassword = req.body.password;
+  const name = req.body.name;
 
   if (userEmail == null || userPassword == null) {
     return sendError(res, 400, "Wrong email or password");
@@ -22,7 +23,6 @@ const register = async (req, res, next) => {
 
   try {
     if (req.body.balance == "" || req.body.balance) {
-      const name = req.body.name;
       const balance = req.body.balance;
       const id = req.body._id;
       const exists = await Child.findOne({ email: userEmail });
@@ -42,7 +42,7 @@ const register = async (req, res, next) => {
         });
 
         newUser = await user.save();
-        console.log("register Child OK");
+        console.log("Register Child OK");
         res.status(200).send(newUser);
       }
     } else {
@@ -57,6 +57,7 @@ const register = async (req, res, next) => {
         const user = Parent({
           email: userEmail,
           password: hashPassword,
+          name: name,
         });
 
         newUser = await user.save();

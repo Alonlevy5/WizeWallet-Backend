@@ -9,6 +9,10 @@ const parentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
   tokens: {
     type: [String]
   },
