@@ -98,10 +98,11 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {   
-    "_id": 30654265,
+    "_id": 205872111,
+    "name": "Alon",
     "balance": 300,
-    "email": "childfsdfsdf@gmail122.com",
-    "password": "54321"
+    "email": "a@gmail1.com",
+    "password": "12345"
 }
 
 ###
