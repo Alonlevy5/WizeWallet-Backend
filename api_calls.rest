@@ -19,15 +19,23 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaW
 
 ###
 
+//  -------------------  Get Task For Parent ' ------------------------
+
+GET http://localhost:3000/task/parent
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI3MjIyODUsImV4cCI6MTY1MjcyNTg4NX0.M78YCwjpZPG5_Qo6PL5Ta19kIC0LRBiD778tjcUfUhg
+
+
+###
+
 //-------------------  Add Tasks ------------------------
 
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTAxNTFhMzEzODAwNDY3ZjQ3Y2MiLCJpYXQiOjE2NTAzODY4MTIsImV4cCI6MTY1MDM5MDQxMn0.oGFYcnVQPJZ_xDLoPm7VS9PfQrMwexksj9HSeBoBBbE
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI3MjIyODUsImV4cCI6MTY1MjcyNTg4NX0.M78YCwjpZPG5_Qo6PL5Ta19kIC0LRBiD778tjcUfUhg
 Content-Type: application/json
 
 {
   "kidid": 123456,
-  "message": "Do your homework",
+  "message": "Do your homework2",
   "amount": 150
 }
 
@@ -96,8 +104,8 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {   
-    "email": "parent@gmail1.com",
-    "password": "123451",
+    "email": "alon@gmail.com",
+    "password": "12345",
     "name": "NISIM"
 }
 
@@ -126,7 +134,7 @@ Content-Type: application/json
 
 {
     "email": "alon@gmail.com",
-    "password": "123456"
+    "password": "12345"
 }
 
 

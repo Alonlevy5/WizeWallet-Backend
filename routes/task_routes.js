@@ -105,5 +105,8 @@ router.get("/kid", authenticate, Task.getTasksBykidId);
 router.post("/", authenticate, Task.addTasks);
 
 
+router.get("/parent", authenticate, Task.getTaskSendByParent);
+
+
 
 module.exports = router;
