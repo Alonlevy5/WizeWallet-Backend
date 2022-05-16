@@ -104,7 +104,23 @@ router.get("/kid", authenticate, Task.getTasksBykidId);
  */
 router.post("/", authenticate, Task.addTasks);
 
-
+/**
+ * @swagger
+ * /task/parent:
+ *   get:
+ *     summary: Get tasks that the parent sent
+ *     tags: [Task Api]
+ *     description: Parent need to be logged in USE GET and SEND TOKEN!
+ *     responses:
+ *       200:
+ *         description: Returns all the tasks the parent send
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Task'
+ */
 router.get("/parent", authenticate, Task.getTaskSendByParent);
 
 
