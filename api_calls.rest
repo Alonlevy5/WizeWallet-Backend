@@ -115,16 +115,17 @@ Content-Type: application/json
 
 ###
 //  -------------------  Child Register ------------------------
-//  -------------------  Only Fields Diffrence ------------------------
 
-POST http://localhost:3000/auth/register
+
+POST http://localhost:3000/auth/register/child
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MTM0NDEsImV4cCI6MTY1MjgxNzA0MX0.eK21YB6NOi8bTvIUoFt8aRPOZBZBbPyEl3gEFa8rbTQ
 Content-Type: application/json
 
 {   
-    "_id": 205871211,
-    "name": "Alon",
+    "_id": 12,
+    "name": "Child3",
     "balance": 300,
-    "email": "a@gma.com",
+    "email": "c@gma113.com",
     "password": "12345"
 }
 
@@ -146,7 +147,7 @@ Content-Type: application/json
 //  -------------------  Logout: Same for both Parent and Child ------------------------
 
 POST http://localhost:3000/auth/logout
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5ODkwOTF9.AR4ceqxGbquIMSf-CAsqqFgVnptdT5urfDyddoDhxsI
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MTI5MjR9.YvHvlHjwIMZUBUjp89HoDeU3DRy1iEiX88BjMEbUO7w
 Content-Type: application/json
 
 {
@@ -158,7 +159,7 @@ Content-Type: application/json
 //  -------------------  Refresh Token Not implemented Yet ------------------------
 
 POST http://localhost:3000/auth/refreshtoken
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjMwNjU0NjUsImlhdCI6MTY1MTA3ODgzMn0.zy7nD722Epholag9Misn7UtoZApEx8WOZfENGuNyzBk
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MTMyOTh9.lmB1seYA1dNyfDS8tYpiTMSh9a0o1Y3fXwNR5v1CdRA
 Content-Type: application/json
 
 {

@@ -1,4 +1,5 @@
 const express = require("express");
+const authenticate = require("../common/auth_middleware");
 const router = express.Router();
 
 const Auth = require("../controllers/auth");
@@ -64,7 +65,7 @@ const Auth = require("../controllers/auth");
 * @swagger
 * /auth/register:
 *   post:
-*     summary: Registers a new user
+*     summary: Registers a new parent
 *     tags: [Auth Api]
 *     requestBody:
 *       required: true
@@ -74,7 +75,7 @@ const Auth = require("../controllers/auth");
 *             $ref: '#/components/schemas/Parent'
 *     responses:
 *       200:
-*         description: The new user
+*         description: The new parent user
 *         content:
 *           application/json:
 *             schema:
@@ -82,6 +83,29 @@ const Auth = require("../controllers/auth");
 */
 
 router.post("/register", Auth.register);
+
+
+/**
+* @swagger
+* /auth/register/child:
+*   post:
+*     summary: Registers a new child
+*     tags: [Auth Api]
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             $ref: '#/components/schemas/Child'
+*     responses:
+*       200:
+*         description: The new child user
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/Child'
+*/
+router.post("/register/child", authenticate, Auth.childRegister);
 
 
 /**

@@ -22,6 +22,7 @@ const authenticate = require("../common/auth_middleware");
  *         - email
  *         - password
  *         - balance
+ *         - name
  *       properties:
  *         id:
  *           type: number
@@ -51,6 +52,7 @@ const authenticate = require("../common/auth_middleware");
  *         email: 'child@gmail.com'
  *         password: '123456'
  *         balance: 500
+ *         name: 'Alon'
  */
 
 /**

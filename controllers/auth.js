@@ -10,6 +10,56 @@ function sendError(res, code, msg) {
   });
 }
 
+const childRegister = async (req, res, next) => {
+  console.log("child Register");
+
+  const userEmail = req.body.email;
+  const userPassword = req.body.password;
+  const name = req.body.name;
+  const balance = req.body.balance;
+  const id = req.body._id;
+  const loggedParent = req.user._id
+
+  if (userEmail == null || userPassword == null) {
+    return sendError(res, 400, "Wrong email or password");
+  }
+  try {
+    const onlineParent = await Parent.findOne({ _id: loggedParent });
+    const exists = await Child.findOne({ email: userEmail });
+    const exists1 = await Parent.findOne({ email: userEmail });
+    if (exists != null || exists1 != null) {
+      return sendError(res, 400, "User already exists");
+    } else {
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(userPassword, salt);
+
+      const user = Child({
+        _id: id,
+        name: name,
+        email: userEmail,
+        password: hashPassword,
+        balance: balance,
+      });
+
+      newUser = await user.save();
+      console.log("Register Child OK");
+      if (!onlineParent.children.includes(id)) {
+        onlineParent.children.push(id);
+        await onlineParent.save();
+      }
+      res.status(200).send(newUser);
+    }
+  } catch (err) {
+    sendError(
+      res,
+      400,
+      `User id is Registered already on a diffrent Email than: ${userEmail} or your missing some Required Fields`
+    );
+  }
+
+
+}
+
 const register = async (req, res, next) => {
   console.log("Register");
 
@@ -20,51 +70,26 @@ const register = async (req, res, next) => {
   if (userEmail == null || userPassword == null) {
     return sendError(res, 400, "Wrong email or password");
   }
-
   try {
-    if (req.body.balance == "" || req.body.balance) {
-      const balance = req.body.balance;
-      const id = req.body._id;
-      const exists = await Child.findOne({ email: userEmail });
-      const exists1 = await Parent.findOne({ email: userEmail });
-      if (exists != null || exists1 != null) {
-        return sendError(res, 400, "User already exists");
-      } else {
-        const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(userPassword, salt);
-
-        const user = Child({
-          _id: id,
-          name: name,
-          email: userEmail,
-          password: hashPassword,
-          balance: balance,
-        });
-
-        newUser = await user.save();
-        console.log("Register Child OK");
-        res.status(200).send(newUser);
-      }
+    const exists = await Parent.findOne({ email: userEmail });
+    const exists1 = await Child.findOne({ email: userEmail });
+    if (exists != null || exists1 != null) {
+      return sendError(res, 400, "Parent User already exists");
     } else {
-      const exists = await Parent.findOne({ email: userEmail });
-      const exists1 = await Child.findOne({ email: userEmail });
-      if (exists != null || exists1 != null) {
-        return sendError(res, 400, "Parent User already exists");
-      } else {
-        const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(userPassword, salt);
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(userPassword, salt);
 
-        const user = Parent({
-          email: userEmail,
-          password: hashPassword,
-          name: name,
-        });
+      const user = Parent({
+        email: userEmail,
+        password: hashPassword,
+        name: name,
+      });
 
-        newUser = await user.save();
-        console.log("register Parent OK");
-        res.status(200).send(newUser);
-      }
+      newUser = await user.save();
+      console.log("register Parent OK");
+      res.status(200).send(newUser);
     }
+
   } catch (err) {
     sendError(
       res,
@@ -265,4 +290,5 @@ module.exports = {
   register,
   logout,
   refreshToken,
+  childRegister
 };
