@@ -44,6 +44,22 @@ const authenticate = require("../common/auth_middleware");
  */
 
 /**
+* @swagger
+* components:
+*   schemas:
+*     kidID:
+*       type: object
+*       required:
+*         - id
+*       properties:
+*         kidid:
+*           type: number
+*           description: The KID-ID
+*       example:
+*         kidid: 12345
+*/
+
+/**
  * @swagger
  * /task:
  *   get:
@@ -107,10 +123,16 @@ router.post("/", authenticate, Task.addTasks);
 /**
  * @swagger
  * /task/parent:
- *   get:
+ *   post:
  *     summary: Get tasks that the parent sent
  *     tags: [Task Api]
- *     description: Parent need to be logged in USE GET and SEND TOKEN!
+ *     description: Parent need to be logged in USE POST SEND KIDID and SEND TOKEN!
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/kidID'
  *     responses:
  *       200:
  *         description: Returns all the tasks the parent send
@@ -121,7 +143,7 @@ router.post("/", authenticate, Task.addTasks);
  *               items:
  *                 $ref: '#/components/schemas/Task'
  */
-router.get("/parent", authenticate, Task.getTaskSendByParent);
+router.post("/parent", authenticate, Task.getTaskSendByParent);
 
 
 

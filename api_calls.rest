@@ -21,9 +21,13 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaW
 
 //  -------------------  Get Task For Parent ' ------------------------
 
-GET http://localhost:3000/task/parent
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI3MjIyODUsImV4cCI6MTY1MjcyNTg4NX0.M78YCwjpZPG5_Qo6PL5Ta19kIC0LRBiD778tjcUfUhg
+POST http://localhost:3000/task/parent
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MDQ2MDQsImV4cCI6MTY1MjgwODIwNH0.QHLJBuNdye2AJ7Cd8x6iYTD0vXkRIAGToG3YJJiSBXY
+Content-Type: application/json
 
+{
+  "kidid": 123456
+}
 
 ###
 
@@ -68,7 +72,7 @@ Content-Type:application/json
 //  -------------------  Get All Transactions For Parent  ------------------------
 //  -------------------  You need to be logged to parent and give your Childs ID  ------------------------
 POST  http://localhost:3000/child/transactions/parent
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTNkY2VmMjA3YzEwOTkzY2FiZGUiLCJpYXQiOjE2NTI0NDk3MDQsImV4cCI6MTY1MjQ1MzMwNH0.OTX-TK2R2slM4blaxiD2mRFP7O9M3fRWil1RW9uYqms
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MDQ2MDQsImV4cCI6MTY1MjgwODIwNH0.QHLJBuNdye2AJ7Cd8x6iYTD0vXkRIAGToG3YJJiSBXY
 Content-Type:application/json
 
 {

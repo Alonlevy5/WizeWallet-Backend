@@ -18,9 +18,10 @@ const getTasks = async (req, res, next) => {
 const getTaskSendByParent = async (req, res, next) => {
   console.log("getTaskSendByParent");
   const sender = req.user._id
+  const kidid = req.body.kidid
 
   try {
-    tasks = await Task.find({ sender: sender })
+    tasks = await Task.find({ sender: sender, kidid: kidid })
     console.log("getTaskSendByParent " + sender)
     res.status(200).send(tasks);
   } catch (err) {
@@ -35,6 +36,7 @@ const getTaskSendByParent = async (req, res, next) => {
 const getTasksBykidId = async (req, res, next) => {
   console.log("getTasksBykidId");
   sender = req.user._id;
+  
   try {
     tasks = await Task.find({ kidid: sender })
     console.log("getTasksBykidId Child id is: " + sender);
