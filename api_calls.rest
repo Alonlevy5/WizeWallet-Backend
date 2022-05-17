@@ -43,6 +43,19 @@ Content-Type: application/json
   "amount": 150
 }
 
+###
+
+//-------------------  Task Completed ------------------------
+//-------------------  Need to pass TASK ID FROM GET TASKS AND TOKEN ------------------------
+
+POST http://localhost:3000/task/completed
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MTU4NjMsImV4cCI6MTY1MjgxOTQ2M30.A_C4kpBMAtpq4VYClMWBI2-gdHcytt5l1RTINAT4x5Q
+Content-Type: application/json
+
+{
+  "_id": "62828a82077b56b51e0da779"
+}
+
 
 
 

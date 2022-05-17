@@ -33,10 +33,29 @@ const getTaskSendByParent = async (req, res, next) => {
   }
 }
 
+const taskCompleted = async (req, res, next) => {
+  console.log("taskCompleted")
+  const loggedChild = req.user._id;
+  taskID = req.body._id
+
+  try {
+    task = await Task.findById(taskID)
+    task.isCompleted = true;
+    await task.save()
+    res.status(200).send(task)
+
+  } catch (err) {
+    res.status(400).send({
+      status: "fail",
+      message: err.message,
+    });
+  }
+}
+
 const getTasksBykidId = async (req, res, next) => {
   console.log("getTasksBykidId");
   sender = req.user._id;
-  
+
   try {
     tasks = await Task.find({ kidid: sender })
     console.log("getTasksBykidId Child id is: " + sender);
@@ -78,4 +97,4 @@ const addTasks = async (req, res, next) => {
   }
 };
 
-module.exports = { getTasks, getTasksBykidId, addTasks, getTaskSendByParent };
+module.exports = { getTasks, getTasksBykidId, addTasks, getTaskSendByParent, taskCompleted };

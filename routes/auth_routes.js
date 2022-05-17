@@ -90,7 +90,7 @@ router.post("/register", Auth.register);
 * /auth/register/child:
 *   post:
 *     summary: Registers a new child
-*     description: Need to provide the Access Token in the auth header so it can link CHILD to PARENTand all the details BELOW
+*     description: Need to provide the Access Token in the auth header so it can link CHILD to PARENT and all the details BELOW
 *     tags: [Auth Api]
 *     requestBody:
 *       required: true

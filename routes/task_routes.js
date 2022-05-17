@@ -60,6 +60,22 @@ const authenticate = require("../common/auth_middleware");
 */
 
 /**
+* @swagger
+* components:
+*   schemas:
+*     taskID:
+*       type: object
+*       required:
+*         - _id
+*       properties:
+*         _id:
+*           type: string
+*           description: The TASK-ID
+*       example:
+*         _id: "62828a82077b56b51e0da779"
+*/
+
+/**
  * @swagger
  * /task:
  *   get:
@@ -119,6 +135,30 @@ router.get("/kid", authenticate, Task.getTasksBykidId);
  *               $ref: '#/components/schemas/Task'
  */
 router.post("/", authenticate, Task.addTasks);
+
+/**
+ * @swagger
+ * /task/completed:
+ *   post:
+ *     summary: Mark a task TRUE in completed field
+ *     tags: [Task Api]
+ *     description: Kid need to be logged on PASS ACCESS TOKEN and TASK ID.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/taskID'
+ *     responses:
+ *       200:
+ *         description: Returns The new task!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Task'
+ */
+
+router.post("/completed", authenticate, Task.taskCompleted);
 
 /**
  * @swagger
