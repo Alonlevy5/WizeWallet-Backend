@@ -29,6 +29,8 @@ const childSchema = new mongoose.Schema(
       {
         description: String,
         amount: Number,
+        longitude: String,
+        latitude: String,
       },
     ],
   },
