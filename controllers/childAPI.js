@@ -113,15 +113,19 @@ const addTransaction = async (req, res, next) => {
     const child = await Child.findOne({ _id: id });
     if (child == null) return sendError(res, 400, "No Child found");
 
-    child.transactions.push(newTransaction);
-    child.balance += newTransaction.amount;
-    const result = await child.save();
-    console.log("transactions add to child OK");
-    res.status(200).send({
-      status: "Ok",
-      message: "new transactiopn is added to child & the balance is updated acordingley",
-      transaction: newTransaction,
-    });
+    if (child.balance >= amount) {
+      child.transactions.push(newTransaction);
+      child.balance -= amount;
+      await child.save();
+      console.log("transactions add to child OK");
+      res.status(200).send({
+        status: "Ok",
+        message: "new transactiopn is added to child & the balance is updated acordingley",
+        transaction: newTransaction,
+      });
+    }else {
+      sendError(res, 400, "Child dosent have enough balance!")
+    }
   } catch (err) {
     res.status(400).send({
       status: "fail",

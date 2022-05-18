@@ -64,11 +64,11 @@ Content-Type: application/json
 //----------------------------------------------------------------
 //  -------------------  Add Transaction  ------------------------
 POST  http://localhost:3000/child/transactions
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5OTAxNjMsImV4cCI6MTY1MDk5Mzc2M30.eIJEVwFz58oHz0csFv2b90Wd_rjlWetwwpOBdO4AzFg
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUyODY5NDg2LCJleHAiOjE2NTI4NzMwODZ9.yKHThB6LrCkt5-5rZ5_O_t5XCR4IGD71Nx7DnZxv8oA
 Content-Type:application/json
 
 {   
-    "amount": 30,
+    "amount": 280,
     "description": "got back 30 nis for strawberies"
 }
 
@@ -133,14 +133,14 @@ Content-Type: application/json
 
 
 POST http://localhost:3000/auth/register/child
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MTM0NDEsImV4cCI6MTY1MjgxNzA0MX0.eK21YB6NOi8bTvIUoFt8aRPOZBZBbPyEl3gEFa8rbTQ
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4NjY3MDYsImV4cCI6MTY1Mjg3MDMwNn0.3Y8J5XMCdY9MNYzI_YgC0K8Fg15UgQ5KYcysNuPKNto
 Content-Type: application/json
 
 {   
-    "_id": 12,
+    "_id": 122,
     "name": "Child3",
     "balance": 300,
-    "email": "c@gma113.com",
+    "email": "1@gmail.com",
     "password": "12345"
 }
 
@@ -153,6 +153,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
+    "is_child": false,
     "email": "alon@gmail.com",
     "password": "12345"
 }

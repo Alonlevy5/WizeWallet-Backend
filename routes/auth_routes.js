@@ -20,6 +20,7 @@ const Auth = require("../controllers/auth");
  *       required:
  *         - email
  *         - password
+ *         - is_child
  *       properties:
  *         email:
  *           type: string
@@ -30,6 +31,9 @@ const Auth = require("../controllers/auth");
  *         name:
  *           type: string
  *           description: The parent name
+ *         is_child:
+ *           type: boolean
+ *           description: Toggle to know if its a child/parent login
  *         children:
  *           type: array
  *           items:
@@ -38,6 +42,7 @@ const Auth = require("../controllers/auth");
  *       example:
  *         email: 'alon@gmail.com'
  *         password: '123456'
+ *         is_child: false
  */
 
 /**
