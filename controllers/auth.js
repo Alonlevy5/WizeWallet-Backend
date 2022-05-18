@@ -103,66 +103,73 @@ const login = async (req, res, next) => {
   console.log("Login");
   const email = req.body.email;
   const password = req.body.password;
-
+  const isChild = req.body.is_child;
+  console.log(`nadav ${isChild}`);
   if (email == null || password == null) {
     return sendError(res, 400, "Wrong eamil or password");
   }
 
   try {
-    const parent = await Parent.findOne({ email: email });
-    const child = await Child.findOne({ email: email });
-    if (parent == null && child == null)
-      return sendError(res, 400, "Wrong email or password");
-    if (parent) {
-      const match = await bcrypt.compare(password, parent.password);
-      if (!match) return sendError(res, 400, "Wrong email or password");
+    if (isChild == true) {
+      const child = await Child.findOne({ email: email });
+      if (child == null) {
+        return sendError(res, 400, "Wrong email or password");
+      } else {
+        const match = await bcrypt.compare(password, child.password);
+        if (!match) return sendError(res, 400, "Wrong email or password");
 
-      //send token to user
-      const accessToken = await jwt.sign(
-        { _id: parent._id },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
-      );
+        //send token to user
+        const accessToken = await jwt.sign(
+          { _id: child._id },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
+        );
 
-      const refreshToken = await jwt.sign(
-        { _id: parent._id },
-        process.env.REFRESH_TOKEN_SECRET
-      );
+        const refreshToken = await jwt.sign(
+          { _id: child._id },
+          process.env.REFRESH_TOKEN_SECRET
+        );
 
-      if (parent.tokens == null) parent.tokens = [refreshToken];
-      else parent.tokens.push(refreshToken);
-      await parent.save();
+        if (child.tokens == null) child.tokens = [refreshToken];
+        else child.tokens.push(refreshToken);
+        await child.save();
 
-      console.log("login Parent OK");
-      res.status(200).send({
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-      });
+        console.log("login Child OK");
+        res.status(200).send({
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        });
+      }
     } else {
-      const match = await bcrypt.compare(password, child.password);
-      if (!match) return sendError(res, 400, "Wrong email or password");
+      const parent = await Parent.findOne({ email: email });
+      if (parent == null) {
+        return sendError(res, 400, "Wrong email or password");
+      } else {
+        const match = await bcrypt.compare(password, parent.password);
+        if (!match) return sendError(res, 400, "Wrong email or password");
 
-      //send token to user
-      const accessToken = await jwt.sign(
-        { _id: child._id },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
-      );
+        //send token to user
+        const accessToken = await jwt.sign(
+          { _id: parent._id },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
+        );
 
-      const refreshToken = await jwt.sign(
-        { _id: child._id },
-        process.env.REFRESH_TOKEN_SECRET
-      );
+        const refreshToken = await jwt.sign(
+          { _id: parent._id },
+          process.env.REFRESH_TOKEN_SECRET
+        );
 
-      if (child.tokens == null) child.tokens = [refreshToken];
-      else child.tokens.push(refreshToken);
-      await child.save();
+        if (parent.tokens == null) parent.tokens = [refreshToken];
+        else parent.tokens.push(refreshToken);
+        await parent.save();
 
-      console.log("login Child OK");
-      res.status(200).send({
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-      });
+        console.log("login Parent OK");
+        res.status(200).send({
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        });
+      }
     }
   } catch (err) {
     return sendError(res, 400, err.message);
