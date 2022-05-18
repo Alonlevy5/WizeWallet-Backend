@@ -138,6 +138,31 @@ router.post("/", authenticate, Task.addTasks);
 
 /**
  * @swagger
+ * /task/parentaccept:
+ *   post:
+ *     summary: Parent accept the kid finished the task
+ *     tags: [Task Api]
+ *     description: Parent need to be logged on PASS ACCESS TOKEN and TASK ID.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/taskID'
+ *     responses:
+ *       200:
+ *         description: Delete the TASK Adds the balance and the transaction to the kid!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Task'
+ */
+
+router.post("/parentaccept", authenticate, Task.parentAcceptTaskCompleted);
+
+
+/**
+ * @swagger
  * /task/completed:
  *   post:
  *     summary: Mark a task TRUE in completed field

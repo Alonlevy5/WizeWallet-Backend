@@ -1,4 +1,5 @@
 const Task = require("../models/task_model");
+const Child = require("../models/child_model")
 
 const getTasks = async (req, res, next) => {
   console.log("getTasks");
@@ -52,6 +53,50 @@ const taskCompleted = async (req, res, next) => {
   }
 }
 
+const parentAcceptTaskCompleted = async (req, res, next) => {
+  console.log("parentAcceptTaskCompleted");
+  taskID = req.body._id
+
+  try {
+    const tasks = await Task.findById(taskID)
+    if(tasks == (null || undefined))
+    {
+      return res.status(400).send({
+        message: "Task is done already",
+        status: "fail",
+      });
+    }
+    const child = await Child.findOne({ _id: tasks.kidid });
+    console.log("parentAcceptTaskCompleted Task id is " + taskID);
+    if(tasks.isCompleted){
+    child.balance += tasks.amount;
+    const newTransaction = {
+      amount: tasks.amount,
+      description: tasks.message,
+    };
+    child.transactions.push(newTransaction);
+    console.log(child)
+    await Task.findByIdAndDelete(taskID)
+    await child.save()
+    // await tasks.save()
+    res.status(200).send({
+      newBalance: child.balance,
+      addedTransaction: newTransaction,
+    });
+  }else{
+    return res.status(400).send({
+      message: "Task isnt completed",
+      status: "Let child complete first",
+    });
+  }
+  } catch (err) {
+    res.status(400).send({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
 const getTasksBykidId = async (req, res, next) => {
   console.log("getTasksBykidId");
   sender = req.user._id;
@@ -97,4 +142,4 @@ const addTasks = async (req, res, next) => {
   }
 };
 
-module.exports = { getTasks, getTasksBykidId, addTasks, getTaskSendByParent, taskCompleted };
+module.exports = { getTasks, getTasksBykidId, addTasks, getTaskSendByParent, taskCompleted, parentAcceptTaskCompleted };

@@ -29,16 +29,17 @@ Content-Type: application/json
   "kidid": 123456
 }
 
+
 ###
 
 //-------------------  Add Tasks ------------------------
 
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI3MjIyODUsImV4cCI6MTY1MjcyNTg4NX0.M78YCwjpZPG5_Qo6PL5Ta19kIC0LRBiD778tjcUfUhg
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI5MDQxNDEsImV4cCI6MTY1MjkwNzc0MX0.8KUd6bhWz8JiyiOHB1iDooJ_l7R7eOvL4MZGWxr67Cg
 Content-Type: application/json
 
 {
-  "kidid": 123456,
+  "kidid": 123455,
   "message": "Do your homework2",
   "amount": 150
 }
@@ -56,7 +57,17 @@ Content-Type: application/json
   "_id": "62828a82077b56b51e0da779"
 }
 
+###
 
+//  -------------------  Task Completed For Parent (Parent Accept)' ------------------------
+
+POST http://localhost:3000/task/parentaccept
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI5MDQxNDEsImV4cCI6MTY1MjkwNzc0MX0.8KUd6bhWz8JiyiOHB1iDooJ_l7R7eOvL4MZGWxr67Cg
+Content-Type: application/json
+
+{
+  "_id": "6283c8dba8b3e11f822bf133"
+}
 
 
 ###
@@ -85,7 +96,7 @@ Content-Type:application/json
 //  -------------------  Get All Transactions For Parent  ------------------------
 //  -------------------  You need to be logged to parent and give your Childs ID  ------------------------
 POST  http://localhost:3000/child/transactions/parent
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MDQ2MDQsImV4cCI6MTY1MjgwODIwNH0.QHLJBuNdye2AJ7Cd8x6iYTD0vXkRIAGToG3YJJiSBXY
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4ODU5NDQsImV4cCI6MTY1Mjg4OTU0NH0.1nVVAHxz7Fovd-NovNuaMqhYgQvBXFiD0sNGX9fslmY
 Content-Type:application/json
 
 {
@@ -188,7 +199,7 @@ Content-Type: application/json
 //  -------------------  You must be logged in to parent(authenticated)  ------------------------
 //  -------------------  Get All kids for the logged parent ------------------------
 GET http://localhost:3000/link
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4NzM2NzYsImV4cCI6MTY1Mjg3NzI3Nn0.sPyMXNP9INVPfiH0acdgh65jTQm2dtEoSPdUcXGTlHE
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4Nzk1MzUsImV4cCI6MTY1Mjg4MzEzNX0.pGLjql76oVHIa76vp9LmhqJUusIcjpFPLc6lZoEDE_Q
 Content-Type: application/json
 
 
