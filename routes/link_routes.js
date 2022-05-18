@@ -40,7 +40,7 @@ const authenticate = require("../common/auth_middleware");
  *     description: Get kids linked to the logged parent JUST SEND TOKEN
  *     responses:
  *       200:
- *         description: Return An Object which has all the CHILDREN Under that parent(Full details)
+ *         description: Return An array of kidID and an Object which has all the CHILDREN Under that parent(Full details)
  *         content:
  *           application/json:
  *             schema:

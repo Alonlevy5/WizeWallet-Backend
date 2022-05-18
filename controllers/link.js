@@ -11,7 +11,8 @@ const getKids = async (req, res, next) => {
     children = await Child.find({ _id: { $in:childArr}})
 
     return res.status(200).send({
-      message: "Those are the kids linked to your account",
+      message: "Those are the kids linked to your account, the array of the ID's",
+      kidID: parent.children,
       children,
     });
   } catch (err) {
