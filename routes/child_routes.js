@@ -39,9 +39,6 @@ const authenticate = require("../common/auth_middleware");
  *         balance:
  *           type: string
  *           description: the child's balance
- *         isCompleted:
- *           type: boolean
- *           description: Is the task completed
  *         tokens:
  *           type: array
  *           items:

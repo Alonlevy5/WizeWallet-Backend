@@ -40,13 +40,13 @@ const authenticate = require("../common/auth_middleware");
  *     description: Get kids linked to the logged parent JUST SEND TOKEN
  *     responses:
  *       200:
- *         description: Return The Updated Children list
+ *         description: Return An Object which has all the CHILDREN Under that parent(Full details)
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Children Array'
+ *                 $ref: '#/components/schemas/Child'
  */
 router.get("/", authenticate, Link.getKids);
 

@@ -188,7 +188,7 @@ Content-Type: application/json
 //  -------------------  You must be logged in to parent(authenticated)  ------------------------
 //  -------------------  Get All kids for the logged parent ------------------------
 GET http://localhost:3000/link
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVlZTNkY2VmMjA3YzEwOTkzY2FiZGUiLCJpYXQiOjE2NTA3MDUyNDUsImV4cCI6MTY1MDcwODg0NX0.rapjdclfK4K3o3uKYGL6RsQJd7JVqix0s9T5RGHNS3E
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4NzM2NzYsImV4cCI6MTY1Mjg3NzI3Nn0.sPyMXNP9INVPfiH0acdgh65jTQm2dtEoSPdUcXGTlHE
 Content-Type: application/json
 
 
