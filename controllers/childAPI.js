@@ -30,11 +30,11 @@ const getTransactionsParent = async (req, res, next) => {
   try {
     parent = await Parent.findById(loggedParent).select("children")
     // console.log(parent)
-    if(!parent.children.includes(kidID)){
+    if (!parent.children.includes(kidID)) {
       return sendError(res, 400, "Parent dosen't contain tha KID-ID")
     }
     transactions = await Child.findById(kidID).select("transactions");
-    if(transactions == null || undefined){
+    if (transactions == null || undefined) {
       return sendError(res, 400, "No Kid ID was found!")
     }
     console.log(`get Transactions for ${kidID} child, transactions OK`);
@@ -62,22 +62,31 @@ const getBalance = async (req, res, next) => {
   }
 };
 
-const updateBalance = async (req, res, next) => {
-  console.log("updateBalance");
-  const newBalance = req.body.balance;
+const sendMoneyFromParent = async (req, res, next) => {
+  console.log("sendMoneyFromParent");
+  const amount = req.body.amount;
+  const kidID = req.body._id
+  const description = req.body.description;
+
   try {
-    const id = req.user._id;
-    const child = await Child.findOne({ _id: id });
+    // const loggedParent = req.user._id;
+    const child = await Child.findOne({ _id: kidID });
     if (child == null) return sendError(res, 400, "No Child found.");
 
-    child.balance += newBalance;
-    const result = await child.save();
+    const newTransaction = {
+      amount: amount,
+      description: description,
+    };
+    child.transactions.push(newTransaction);
+    child.balance += amount;
+    await child.save();
 
-    console.log("update balance to child OK");
+    console.log("sendMoneyFromParent OK");
     res.status(200).send({
       status: "Ok",
-      message: "Updated child's balance",
-      balance: newBalance
+      message: "send money to child & Updated Balance and Added Transaction",
+      balance: child.balance,
+      transaction: newTransaction,
     });
   } catch (err) {
     res.status(400).send({
@@ -100,7 +109,7 @@ const addTransaction = async (req, res, next) => {
   };
 
   try {
-    const id = req.user._id; 
+    const id = req.user._id;
     const child = await Child.findOne({ _id: id });
     if (child == null) return sendError(res, 400, "No Child found");
 
@@ -125,6 +134,6 @@ module.exports = {
   getTransactions,
   addTransaction,
   getBalance,
-  updateBalance,
+  sendMoneyFromParent,
   getTransactionsParent
 };

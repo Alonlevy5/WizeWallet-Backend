@@ -102,14 +102,16 @@ Content-Type:application/json
 
 
 ###
-//  -------------------  Update Balance  ------------------------
+//  -------------------  Send Money From Parent  ------------------------
 
-post http://localhost:3000/child/balance
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIwNTk4MjExLCJpYXQiOjE2NTA5OTAxNjMsImV4cCI6MTY1MDk5Mzc2M30.eIJEVwFz58oHz0csFv2b90Wd_rjlWetwwpOBdO4AzFg
+post http://localhost:3000/child/sendmoney
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4NjY3MDYsImV4cCI6MTY1Mjg3MDMwNn0.3Y8J5XMCdY9MNYzI_YgC0K8Fg15UgQ5KYcysNuPKNto
 Content-Type:application/json
 
 {
- "balance": 125
+ "_id": 123455,
+ "description": "Gift",
+ "amount": 125
 }
 
 

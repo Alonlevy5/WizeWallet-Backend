@@ -80,16 +80,26 @@ const authenticate = require("../common/auth_middleware");
 * @swagger
 * components:
 *   schemas:
-*     Balance:
+*     Send-Money:
 *       type: object
 *       required:
-*         - balance
+*         - _id
+*         - description
+*         - amount
 *       properties:
-*         balance:
+*         _id:
 *           type: number
-*           description: The Amount Added/dedcuted
+*           description: The KID-ID to send money to
+*         amount:
+*           type: number
+*           description: The Amount the parent send
+*         description:
+*           type: string
+*           description: The description of the money the parent send        
 *       example:
-*         balance: 500
+*         _id: 123455
+*         amount: 150
+*         description: 'Gift For you'
 */
 
 /**
@@ -185,27 +195,27 @@ router.get("/balance", authenticate, childApi.getBalance);
 
 /**
  * @swagger
- * /child/balance:
+ * /child/sendmoney:
  *   post:
- *     summary: Add balance to child
+ *     summary: Send money to child from parent
  *     tags: [Child Api]
- *     description: Adding new balance to child + OR -. 
+ *     description: Sending money to kid need to pass ACCESS TOKEN AND BELOW(_id for kid, amount , description)
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Balance'
+ *             $ref: '#/components/schemas/Send-Money'
  *     responses:
  *       200:
- *         description: Returns The updated balance.
+ *         description: Returns the new balance and the transaction that was send!.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Balance'
+ *               $ref: '#/components/schemas/Send-Money'
  */
 
-router.post("/balance", authenticate, childApi.updateBalance);
+router.post("/sendmoney", authenticate, childApi.sendMoneyFromParent);
 
 
 /**
