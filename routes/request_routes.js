@@ -103,4 +103,31 @@ router.post("/", authenticate, Request.addRequest);
  */
 router.post("/getparent", authenticate, Request.getRequestSentByKid);
 
+
+/**
+ * @swagger
+ * /request/delete:
+ *   post:
+ *     summary: Delete the request that the kid sent DAD DOSENT ACCEPT
+ *     tags: [Request Api]
+ *     description: Parent need to be logged in USE POST SEND REQUEST-ID and SEND TOKEN! _ID is a STRING
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/_ID'
+ *     responses:
+ *       200:
+ *         description: Return the deleted request the kid send
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Request'
+ */
+
+router.post("/delete", authenticate, Request.deleteRequest);
+
 module.exports = router;

@@ -58,4 +58,33 @@ const getRequestSentByKid = async (req, res, next) => {
   }
 }
 
-module.exports = { addRequest, getRequestSentByKid };
+const deleteRequest = async (req, res, next) => {
+  console.log("deleteRequest");
+
+  const requestID = req.body._id
+
+  try {
+    request = await Request.findById(requestID)
+
+    if (request == null) {
+      return res.status(400).send({
+        status: "fail",
+        message: 'No request',
+      });
+    }
+    await Request.findByIdAndDelete(requestID)
+    console.log("deleteRequest deleted " + requestID)
+    res.status(200).send({
+      message: "Request Deleted",
+      request,
+    });
+  } catch (err) {
+    res.status(400).send({
+      status: "fail",
+      message: err.message,
+    });
+
+  }
+}
+
+module.exports = { addRequest, getRequestSentByKid, deleteRequest };

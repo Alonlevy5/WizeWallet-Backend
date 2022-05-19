@@ -230,12 +230,23 @@ Content-Type: application/json
 
 
 ###
-//  -------------------  ADD KID API for the logged parent ------------------------
-
+//  -------------------  Request GetParent API ------------------------
+//  -------------------  Token And KIDID ------------------------
 POST http://localhost:3000/request/getparent
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUyOTc3Mjg2LCJleHAiOjE2NTI5ODA4ODZ9.yEzwDjZDzBWmmwuZ9nHXqXYdwiv2eQv9f1fL1VQRtWE
 Content-Type: application/json
 
 {
     "_id": 1223
+}
+
+###
+//  -------------------  Delete Request API ------------------------
+//  -------------------  Token And taskID ------------------------
+POST http://localhost:3000/request/delete
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUyOTgxMjUyLCJleHAiOjE2NTI5ODQ4NTJ9.nbsLnYB4tLlGLhMTRGueeEyeK5ovxoozreT3kr5vNaI
+Content-Type: application/json
+
+{
+    "_id": "62866ea584af80b9c33b1d86"
 }
