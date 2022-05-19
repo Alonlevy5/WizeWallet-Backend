@@ -164,8 +164,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "is_child": false,
-    "email": "alon@gmail.com",
+    "is_child": true,
+    "email": "1@gmail.com",
     "password": "12345"
 }
 
@@ -212,4 +212,30 @@ Content-Type: application/json
 
 {
     "id": "1234561"
+}
+
+###
+//  ------------------- Add Request API ------------------------
+//  ------------------- You must be logged in to kid(authenticated) ------------------------
+
+
+POST http://localhost:3000/request
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUyOTc3Mjg2LCJleHAiOjE2NTI5ODA4ODZ9.yEzwDjZDzBWmmwuZ9nHXqXYdwiv2eQv9f1fL1VQRtWE
+Content-Type: application/json
+
+{
+    "amount": 1256,
+    "message": "Need for food"
+}
+
+
+###
+//  -------------------  ADD KID API for the logged parent ------------------------
+
+POST http://localhost:3000/request/getparent
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUyOTc3Mjg2LCJleHAiOjE2NTI5ODA4ODZ9.yEzwDjZDzBWmmwuZ9nHXqXYdwiv2eQv9f1fL1VQRtWE
+Content-Type: application/json
+
+{
+    "_id": 1223
 }

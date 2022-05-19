@@ -61,4 +61,8 @@ app.use("/auth", authRouter);
 const linkRouter = require ("./routes/link_routes")
 app.use('/link', linkRouter)
 
+const requestRouter = require ("./routes/request_routes")
+app.use('/request', requestRouter)
+
+
 module.exports = app;
