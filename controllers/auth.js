@@ -130,6 +130,7 @@ const login = async (req, res, next) => {
           process.env.REFRESH_TOKEN_SECRET
         );
 
+        const name = child.name;
         if (child.tokens == null) child.tokens = [refreshToken];
         else child.tokens.push(refreshToken);
         await child.save();
@@ -138,6 +139,7 @@ const login = async (req, res, next) => {
         res.status(200).send({
           accessToken: accessToken,
           refreshToken: refreshToken,
+          name: name,
         });
       }
     } else {
@@ -160,6 +162,7 @@ const login = async (req, res, next) => {
           process.env.REFRESH_TOKEN_SECRET
         );
 
+        const name = parent.name;
         if (parent.tokens == null) parent.tokens = [refreshToken];
         else parent.tokens.push(refreshToken);
         await parent.save();
@@ -168,6 +171,7 @@ const login = async (req, res, next) => {
         res.status(200).send({
           accessToken: accessToken,
           refreshToken: refreshToken,
+          name: name,
         });
       }
     }
