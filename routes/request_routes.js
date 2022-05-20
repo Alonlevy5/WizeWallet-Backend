@@ -130,4 +130,30 @@ router.post("/getparent", authenticate, Request.getRequestSentByKid);
 
 router.post("/delete", authenticate, Request.deleteRequest);
 
+/**
+ * @swagger
+ * /request/accept:
+ *   post:
+ *     summary: The parent accept the request that the kid sent
+ *     tags: [Request Api]
+ *     description: Parent need to be logged in USE POST SEND REQUEST-ID and SEND TOKEN! _ID is a STRING
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/_ID'
+ *     responses:
+ *       200:
+ *         description: Returns the added request and the child
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Request'
+ */
+
+router.post("/accept", authenticate, Request.acceptRequest);
+
 module.exports = router;

@@ -1,5 +1,6 @@
 const Request = require("../models/request_model");
-const Child = require("../models/child_model")
+const Child = require("../models/child_model");
+const { request } = require("express");
 
 
 const addRequest = async (req, res, next) => {
@@ -87,4 +88,45 @@ const deleteRequest = async (req, res, next) => {
   }
 }
 
-module.exports = { addRequest, getRequestSentByKid, deleteRequest };
+const acceptRequest = async (req, res, next) => {
+
+  console.log("acceptRequest");
+
+  const requestID = req.body._id
+
+  try {
+    requests = await Request.findById(requestID)
+    child = await Child.findById(requests.sender)
+
+    if (requests == null || child == null) {
+      return res.status(400).send({
+        status: "fail",
+        message: 'No request',
+      });
+    }
+    const newRequest = {
+      amount: requests.amount,
+      description: requests.message,
+    };
+    child.transactions.push(newRequest);
+    child.balance += requests.amount;
+
+    await child.save();
+    await Request.findByIdAndDelete(requestID)
+
+    console.log("acceptRequest  " + requestID)
+    res.status(200).send({
+      message: "Request Accepted Kid got money + transaction. ",
+      requests,
+      child,
+    });
+  } catch (err) {
+    res.status(400).send({
+      status: "fail Exception",
+      message: err.message,
+    });
+
+  }
+}
+
+module.exports = { addRequest, getRequestSentByKid, deleteRequest, acceptRequest };

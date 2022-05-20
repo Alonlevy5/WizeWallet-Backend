@@ -250,3 +250,15 @@ Content-Type: application/json
 {
     "_id": "62866ea584af80b9c33b1d86"
 }
+
+###
+//  -------------------  Accept Request API ------------------------
+//  -------------------  Token And taskID ------------------------
+POST http://localhost:3000/request/accept
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUzMDQwMDUxLCJleHAiOjE2NTMwNDM2NTF9.tr0VAgD7k6RH0mDv0TDHqaPHW4P8DKZIfJP_J-YoUw4
+Content-Type: application/json
+
+{
+    "_id": "6286715f6bd0f337e7afbf3b"
+}
+
