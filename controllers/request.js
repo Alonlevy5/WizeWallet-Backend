@@ -41,7 +41,7 @@ const getRequestSentByKid = async (req, res, next) => {
         message: 'No _id in body',
       });
     }
-    request = await Request.find({ sender: kidID })
+    const request = await Request.find({ sender: kidID })
     if (request == null) {
       return res.status(400).send({
         status: "fail",
