@@ -18,7 +18,7 @@ const childRegister = async (req, res, next) => {
   const name = req.body.name;
   const balance = req.body.balance;
   const id = req.body._id;
-  const loggedParent = req.user._id
+  const loggedParent = req.user._id;
 
   if (userEmail == null || userPassword == null) {
     return sendError(res, 400, "Wrong email or password");
@@ -56,9 +56,7 @@ const childRegister = async (req, res, next) => {
       `User id is Registered already on a diffrent Email than: ${userEmail} or your missing some Required Fields`
     );
   }
-
-
-}
+};
 
 const register = async (req, res, next) => {
   console.log("Register");
@@ -89,7 +87,6 @@ const register = async (req, res, next) => {
       console.log("register Parent OK");
       res.status(200).send(newUser);
     }
-
   } catch (err) {
     sendError(
       res,
@@ -174,6 +171,51 @@ const login = async (req, res, next) => {
           name: name,
         });
       }
+    }
+  } catch (err) {
+    return sendError(res, 400, err.message);
+  }
+};
+
+const changePassword = async (req, res, next) => {
+  console.log("changePassword");
+  loggedUser = req.user._id;
+  currentPassword = req.body.oldpassword;
+  newPassword = req.body.newpassword;
+
+  try {
+    if (typeof loggedUser === 'string') {
+      const parent = await Parent.findById(loggedUser);
+      if (parent) {
+        const match = await bcrypt.compare(currentPassword, parent.password);
+        if (!match) return sendError(res, 400, "Wrong Password.");
+
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(newPassword, salt);
+
+        parent.password = hashPassword;
+        await parent.save();
+
+        res.status(200).send({
+          message: "Parent Password has been changed!",
+          newPassword: newPassword,
+        });
+      }
+    } else {
+      const child = await Child.findById(loggedUser);
+      const match = await bcrypt.compare(currentPassword, child.password);
+      if (!match) return sendError(res, 400, "Wrong Password.");
+
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(newPassword, salt);
+
+      child.password = hashPassword;
+      await child.save();
+
+      res.status(200).send({
+        message: "Child Password has been changed!",
+        newPassword: newPassword,
+      });
     }
   } catch (err) {
     return sendError(res, 400, err.message);
@@ -301,5 +343,6 @@ module.exports = {
   register,
   logout,
   refreshToken,
-  childRegister
+  childRegister,
+  changePassword,
 };

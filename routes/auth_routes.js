@@ -113,7 +113,7 @@ router.post("/register", Auth.register);
 */
 router.post("/register/child", authenticate, Auth.childRegister);
 
-
+router.post("/changepassword", authenticate, Auth.changePassword);
 /**
 * @swagger
 * /auth/login:

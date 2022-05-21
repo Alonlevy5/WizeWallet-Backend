@@ -4,17 +4,23 @@
 GET http://localhost:3000/
 
 ###
+###
+//  -------------------  Check Routing ----------------------------
+
+GET http://https://wizewallet-backend.herokuapp.com/
+
+###
 //  -------------------  Get All Tasks  ----------------------------
 
-GET http://localhost:3000/task
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY5NzZkNzBjOWY0ODBkYWI2NTU1YjEiLCJpYXQiOjE2NTEzNTA3MzQsImV4cCI6MTY1MTM1NDMzNH0.8Lrsb16LEumXua05siBIKTeK35I7Dmtn6w0S0jb2Dbs
+GET https://wizewallet-backend.herokuapp.com/task
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg3ZTEyYWZhMjdiNGJhNmRjMDIyODYiLCJpYXQiOjE2NTMwNzYzMTIsImV4cCI6MTY1MzA3OTkxMn0.6CbnhoGC6CySXSwLE80JIY1CF5dY76j7gWXNvczPEsQ
 ###
 
 
 //  -------------------  Get Task By Kid ID' ------------------------
 
 GET http://localhost:3000/task/kid
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjUxNjU1MDIyLCJleHAiOjE2NTE2NTg2MjJ9.vTGSYU_ukZHNljwuz5Qbmd2gPUZPKN8tD2WTgJ8PpzI
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg3ZTEyYWZhMjdiNGJhNmRjMDIyODYiLCJpYXQiOjE2NTMwNzYzMTIsImV4cCI6MTY1MzA3OTkxMn0.6CbnhoGC6CySXSwLE80JIY1CF5dY76j7gWXNvczPEsQ
 
 
 ###
@@ -130,7 +136,7 @@ Content-Type:application/json
 //  -------------------      Auth   ------------------------
 //
 //  -------------------  Parent Register ------------------------
-POST http://localhost:3000/auth/register
+POST https://wizewallet-backend.herokuapp.com/auth/register
 Content-Type: application/json
 
 {   
@@ -144,7 +150,7 @@ Content-Type: application/json
 
 
 POST http://localhost:3000/auth/register/child
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4NjY3MDYsImV4cCI6MTY1Mjg3MDMwNn0.3Y8J5XMCdY9MNYzI_YgC0K8Fg15UgQ5KYcysNuPKNto
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg3ZTEyYWZhMjdiNGJhNmRjMDIyODYiLCJpYXQiOjE2NTMxMzIwOTksImV4cCI6MTY1MzEzNTY5OX0.66yQznml4gqDr-Um6GMuDcM27kcx-gGlcGvQxQxI0MU
 Content-Type: application/json
 
 {   
@@ -160,13 +166,13 @@ Content-Type: application/json
 //  ------------------- Same API For Both ------------------------
 
 
-POST http://localhost:3000/auth/login
+POST https://wizewallet-backend.herokuapp.com/auth/login
 Content-Type: application/json
 
 {
     "is_child": true,
     "email": "1@gmail.com",
-    "password": "12345"
+    "password": "1"
 }
 
 
@@ -180,6 +186,18 @@ Content-Type: application/json
 {
     "message" : "Check",
     "sender" : "Alon"
+}
+
+###
+//  -------------------  ChangePassword: Same for both Parent and Child ------------------------
+
+POST http://localhost:3000/auth/changepassword
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUzMTMyNjIyLCJleHAiOjE2NTMxMzYyMjJ9.1oh1NfwlVixGczKs46KXxyUd0fA-MzhDml_Fc0pqUOQ
+Content-Type: application/json
+
+{
+    "oldpassword" : "12345",
+    "newpassword" : "1"
 }
 
 ###
