@@ -37,7 +37,7 @@ if (process.env.NODE_ENV == "development") {
 app.use(bodyParser.urlencoded({ extended: true, limit: "1mb" }));
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/WizeWallet-DB', { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", (error) => {
   console.error(error);
