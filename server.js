@@ -14,19 +14,25 @@ if (process.env.NODE_ENV == "development") {
         title: "WizeWallet Backend API's",
         version: "1.0.0",
         description: "Express Library API's",
-      }, components: {
+      },
+      components: {
         securitySchemes: {
-            bearerAuth: {
-                type: 'http',
-                scheme: 'bearer',
-                bearerFormat: 'JWT',
-            }
-        }
-    },
-    security: [{
-        bearerAuth: []
-    }],
-      servers: [{ url: "http://localhost:" + process.env.PORT }],
+          bearerAuth: {
+            type: "http",
+            scheme: "bearer",
+            bearerFormat: "JWT",
+          },
+        },
+      },
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      servers: [
+        { url: "https://wizewallet-backend.herokuapp.com/" },
+        { url: "http://localhost:" + process.env.PORT },
+      ],
     },
     apis: ["./routes/*.js"],
   };
@@ -37,7 +43,10 @@ if (process.env.NODE_ENV == "development") {
 app.use(bodyParser.urlencoded({ extended: true, limit: "1mb" }));
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/WizeWallet-DB', { useNewUrlParser: true });
+mongoose.connect(
+  process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/WizeWallet-DB",
+  { useNewUrlParser: true }
+);
 const db = mongoose.connection;
 db.on("error", (error) => {
   console.error(error);
@@ -58,11 +67,10 @@ app.use("/child", childTransRouter);
 const authRouter = require("./routes/auth_routes");
 app.use("/auth", authRouter);
 
-const linkRouter = require ("./routes/link_routes")
-app.use('/link', linkRouter)
+const linkRouter = require("./routes/link_routes");
+app.use("/link", linkRouter);
 
-const requestRouter = require ("./routes/request_routes")
-app.use('/request', requestRouter)
-
+const requestRouter = require("./routes/request_routes");
+app.use("/request", requestRouter);
 
 module.exports = app;

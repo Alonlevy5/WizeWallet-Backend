@@ -179,7 +179,7 @@ Content-Type: application/json
 ###
 //  -------------------  Logout: Same for both Parent and Child ------------------------
 
-POST http://localhost:3000/auth/logout
+POST https://wizewallet-backend.herokuapp.com/auth/logout
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MTI5MjR9.YvHvlHjwIMZUBUjp89HoDeU3DRy1iEiX88BjMEbUO7w
 Content-Type: application/json
 
@@ -191,8 +191,8 @@ Content-Type: application/json
 ###
 //  -------------------  ChangePassword: Same for both Parent and Child ------------------------
 
-POST http://localhost:3000/auth/changepassword
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUzMTMyNjIyLCJleHAiOjE2NTMxMzYyMjJ9.1oh1NfwlVixGczKs46KXxyUd0fA-MzhDml_Fc0pqUOQ
+POST https://wizewallet-backend.herokuapp.com/auth/changepassword
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUzMTM5MzE5LCJleHAiOjE2NTMxNDI5MTl9.Pb-KLFY6FWhxuSp7xDOXV3LKwuiYIDF-qg5WAWIFFWI
 Content-Type: application/json
 
 {
