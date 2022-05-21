@@ -102,10 +102,14 @@ const addTransaction = async (req, res, next) => {
 
   const description = req.body.description;
   const amount = req.body.amount;
+  const latitude = req.body.latitude;
+  const longitude = req.body.longitude;
 
   const newTransaction = {
     description: description,
     amount: amount,
+    longitude: longitude,
+    latitude: latitude,
   };
 
   try {
