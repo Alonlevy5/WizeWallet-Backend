@@ -49,6 +49,28 @@ const Auth = require("../controllers/auth");
 * @swagger
 * components:
 *   schemas:
+*     Password:
+*       type: object
+*       required:
+*         - oldpassword
+*         - newpassword
+*       properties:
+*         oldpassword:
+*           type: string
+*           description: The OLD-PASSWORD
+*         newpassword:
+*           type: string
+*           description: The NEW-PASSWORD
+*       example:
+*         oldpassword: "12345"
+*         newpassword: "1"
+*/
+
+
+/**
+* @swagger
+* components:
+*   schemas:
 *     Tokens:
 *       type: object
 *       required:
@@ -111,9 +133,34 @@ router.post("/register", Auth.register);
 *             schema:
 *               $ref: '#/components/schemas/Child'
 */
+
 router.post("/register/child", authenticate, Auth.childRegister);
 
+
+/**
+* @swagger
+* /auth/changepassword:
+*   post:
+*     summary: Changes a password to a Parent and a Child
+*     description: Need to provide the Access Token in the auth header and provide oldpassword & newpassword
+*     tags: [Auth Api]
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             $ref: '#/components/schemas/Password'
+*     responses:
+*       200:
+*         description: The new password that has been changed
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/Password'
+*/
+
 router.post("/changepassword", authenticate, Auth.changePassword);
+
 /**
 * @swagger
 * /auth/login:
