@@ -19,6 +19,7 @@ const childRegister = async (req, res, next) => {
   const balance = req.body.balance;
   const id = req.body._id;
   const loggedParent = req.user._id;
+  const img = req.body.img_url;
 
   if (userEmail == null || userPassword == null) {
     return sendError(res, 400, "Wrong email or password");
@@ -39,6 +40,7 @@ const childRegister = async (req, res, next) => {
         email: userEmail,
         password: hashPassword,
         balance: balance,
+        img_url: img,
       });
 
       newUser = await user.save();

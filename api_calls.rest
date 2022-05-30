@@ -149,16 +149,17 @@ Content-Type: application/json
 //  -------------------  Child Register ------------------------
 
 
-POST http://localhost:3000/auth/register/child
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg3ZTEyYWZhMjdiNGJhNmRjMDIyODYiLCJpYXQiOjE2NTMxMzIwOTksImV4cCI6MTY1MzEzNTY5OX0.66yQznml4gqDr-Um6GMuDcM27kcx-gGlcGvQxQxI0MU
+POST https://wizewallet-backend.herokuapp.com/auth/register/child
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjhmNGMwNGU4ODY2MDI4NGE3YmU1ZjUiLCJpYXQiOjE2NTM5MzM3MTksImV4cCI6MTY1MzkzNzMxOX0.g9IO86ZqwAZKiCqmG2RTTSvTN1WRBRWmtRW6Yor4MOQ
 Content-Type: application/json
 
 {   
-    "_id": 122,
+    "_id": 1222,
     "name": "Child3",
     "balance": 300,
-    "email": "1@gmail.com",
-    "password": "12345"
+    "email": "21@gmail.com",
+    "password": "12345",
+    "img_url": "Hello"
 }
 
 ###
