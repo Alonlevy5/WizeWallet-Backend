@@ -81,12 +81,13 @@ Content-Type: application/json
 //----------------------------------------------------------------
 //  -------------------  Add Transaction  ------------------------
 POST  http://localhost:3000/child/transactions
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUyODY5NDg2LCJleHAiOjE2NTI4NzMwODZ9.yKHThB6LrCkt5-5rZ5_O_t5XCR4IGD71Nx7DnZxv8oA
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMTIsImlhdCI6MTY1MzkzNDk1OSwiZXhwIjoxNjUzOTM4NTU5fQ.MISkdvXxwOBz-g3y-dPbo5HVdp2HANLSdrrd5hp7-6I
 Content-Type:application/json
 
 {   
-    "amount": 280,
-    "description": "got back 30 nis for strawberies"
+    "amount": 1,
+    "description": "got back 30 nis for strawberies",
+    "createdat": "05/06/2022"
 }
 
 
@@ -149,17 +150,17 @@ Content-Type: application/json
 //  -------------------  Child Register ------------------------
 
 
-POST https://wizewallet-backend.herokuapp.com/auth/register/child
+POST http://localhost:3000/auth/register/child
 Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjhmNGMwNGU4ODY2MDI4NGE3YmU1ZjUiLCJpYXQiOjE2NTM5MzM3MTksImV4cCI6MTY1MzkzNzMxOX0.g9IO86ZqwAZKiCqmG2RTTSvTN1WRBRWmtRW6Yor4MOQ
 Content-Type: application/json
 
 {   
-    "_id": 1222,
+    "_id": 1212,
     "name": "Child3",
     "balance": 300,
-    "email": "21@gmail.com",
+    "email": "1@gmail.com",
     "password": "12345",
-    "img_url": "Hello"
+    "img_url": "New image"
 }
 
 ###
@@ -167,13 +168,13 @@ Content-Type: application/json
 //  ------------------- Same API For Both ------------------------
 
 
-POST https://wizewallet-backend.herokuapp.com/auth/login
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
     "is_child": true,
     "email": "1@gmail.com",
-    "password": "1"
+    "password": "12345"
 }
 
 
