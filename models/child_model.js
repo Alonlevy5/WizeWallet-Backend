@@ -18,6 +18,9 @@ const childSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    img_url: {
+      type: String,
+    },
     tokens: {
       type: [String],
     },
