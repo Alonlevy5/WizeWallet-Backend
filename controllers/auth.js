@@ -128,8 +128,9 @@ const login = async (req, res, next) => {
           { _id: child._id },
           process.env.REFRESH_TOKEN_SECRET
         );
-
+          
         const name = child.name;
+        const img_url = child.img_url
         if (child.tokens == null) child.tokens = [refreshToken];
         else child.tokens.push(refreshToken);
         await child.save();
@@ -139,6 +140,7 @@ const login = async (req, res, next) => {
           accessToken: accessToken,
           refreshToken: refreshToken,
           name: name,
+          img_url: img_url,
         });
       }
     } else {
