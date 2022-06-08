@@ -67,6 +67,7 @@ const sendMoneyFromParent = async (req, res, next) => {
   const amount = req.body.amount;
   const kidID = req.body._id
   const description = req.body.description;
+  const date = req.body.createdat
 
   try {
     // const loggedParent = req.user._id;
@@ -76,6 +77,7 @@ const sendMoneyFromParent = async (req, res, next) => {
     const newTransaction = {
       amount: amount,
       description: description,
+      createdat: date,
     };
     child.transactions.push(newTransaction);
     child.balance += amount;

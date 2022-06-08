@@ -9,6 +9,7 @@ const addRequest = async (req, res, next) => {
     amount: req.body.amount,
     message: req.body.message,
     sender: req.user._id,
+    createdat: req.body.createdat,
   });
 
   try {
@@ -106,6 +107,7 @@ const acceptRequest = async (req, res, next) => {
     const newRequest = {
       amount: requests.amount,
       description: requests.message,
+      createdat: requests.createdat,
     };
     child.transactions.push(newRequest);
     child.balance += requests.amount;

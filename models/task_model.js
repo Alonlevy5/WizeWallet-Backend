@@ -21,6 +21,9 @@ const taskSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  createdat: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Task", taskSchema);
