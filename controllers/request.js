@@ -108,6 +108,7 @@ const acceptRequest = async (req, res, next) => {
       amount: requests.amount,
       description: requests.message,
       createdat: requests.createdat,
+      istransact: false,
     };
     child.transactions.push(newRequest);
     child.balance += requests.amount;

@@ -74,6 +74,7 @@ const parentAcceptTaskCompleted = async (req, res, next) => {
       amount: tasks.amount,
       description: tasks.message,
       createdat: tasks.createdat,
+      istransact: false,
     };
     child.transactions.push(newTransaction);
     console.log(child)

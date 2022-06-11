@@ -78,6 +78,7 @@ const sendMoneyFromParent = async (req, res, next) => {
       amount: amount,
       description: description,
       createdat: date,
+      istransact: false,
     };
     child.transactions.push(newTransaction);
     child.balance += amount;
