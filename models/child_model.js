@@ -35,6 +35,7 @@ const childSchema = new mongoose.Schema(
         longitude: String,
         latitude: String,
         createdat: String,
+        istransact: Boolean,
       },
     ],
   },

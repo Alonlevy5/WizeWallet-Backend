@@ -114,6 +114,7 @@ const addTransaction = async (req, res, next) => {
     longitude: longitude,
     latitude: latitude,
     createdat: date,
+    istransact: true,
   };
 
   try {
