@@ -56,11 +56,11 @@ Content-Type: application/json
 //-------------------  Need to pass TASK ID FROM GET TASKS AND TOKEN ------------------------
 
 POST http://localhost:3000/task/completed
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI4MTU4NjMsImV4cCI6MTY1MjgxOTQ2M30.A_C4kpBMAtpq4VYClMWBI2-gdHcytt5l1RTINAT4x5Q
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMTIsImlhdCI6MTY1NTA1MDAzOSwiZXhwIjoxNjU1MDUzNjM5fQ.ziUVR4kns17Z4MplxsJRomu4y7G_5ZsU8-vLvte_m0w
 Content-Type: application/json
 
 {
-  "_id": "62828a82077b56b51e0da779"
+  "_id": "6298edee8d16a0cfc32c1e39"
 }
 
 ###
@@ -68,7 +68,7 @@ Content-Type: application/json
 //  -------------------  Task Completed For Parent (Parent Accept)' ------------------------
 
 POST http://localhost:3000/task/parentaccept
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI5MDQxNDEsImV4cCI6MTY1MjkwNzc0MX0.8KUd6bhWz8JiyiOHB1iDooJ_l7R7eOvL4MZGWxr67Cg
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMTIsImlhdCI6MTY1NTA1MDAzOSwiZXhwIjoxNjU1MDUzNjM5fQ.ziUVR4kns17Z4MplxsJRomu4y7G_5ZsU8-vLvte_m0w
 Content-Type: application/json
 
 {
@@ -240,7 +240,7 @@ Content-Type: application/json
 
 
 POST http://localhost:3000/request
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMiwiaWF0IjoxNjUyOTc3Mjg2LCJleHAiOjE2NTI5ODA4ODZ9.yEzwDjZDzBWmmwuZ9nHXqXYdwiv2eQv9f1fL1VQRtWE
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMTIsImlhdCI6MTY1NTA1MDAzOSwiZXhwIjoxNjU1MDUzNjM5fQ.ziUVR4kns17Z4MplxsJRomu4y7G_5ZsU8-vLvte_m0w
 Content-Type: application/json
 
 {

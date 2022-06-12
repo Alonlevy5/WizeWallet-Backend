@@ -1,6 +1,7 @@
 const Request = require("../models/request_model");
 const Child = require("../models/child_model");
-
+const sendEmail = require("./email")
+const Parent = require("../models/parent_model")
 
 const addRequest = async (req, res, next) => {
   console.log("addRequest");
@@ -15,8 +16,9 @@ const addRequest = async (req, res, next) => {
   try {
 
     const request = await newRequest.save();
+    const parent = await Parent.findOne({ children: request.sender })
     console.log("add new request OK");
-
+    await sendEmail(parent.email, "New Money Request", "Hi please check your your kid is asking for money!")
     res.status(200).send({
       status: "Done",
       request: newRequest,

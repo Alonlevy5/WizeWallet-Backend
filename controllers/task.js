@@ -1,5 +1,7 @@
 const Task = require("../models/task_model");
 const Child = require("../models/child_model")
+const Parent = require("../models/parent_model")
+const sendEmail = require("./email")
 
 const getTasks = async (req, res, next) => {
   console.log("getTasks");
@@ -41,8 +43,10 @@ const taskCompleted = async (req, res, next) => {
 
   try {
     task = await Task.findById(taskID)
+    parent = await Parent.findById(task.sender)
     task.isCompleted = true;
     await task.save()
+    await sendEmail(parent.email, "Task completed", "Hi please check your kid just completed a task!")
     res.status(200).send(task)
 
   } catch (err) {
