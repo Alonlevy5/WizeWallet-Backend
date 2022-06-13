@@ -17,8 +17,19 @@ const addRequest = async (req, res, next) => {
 
     const request = await newRequest.save();
     const parent = await Parent.findOne({ children: request.sender })
+    const child = await Child.findById(req.user._id)
+
     console.log("add new request OK");
-    await sendEmail(parent.email, "New Money Request", "Hi please check your your kid is asking for money!")
+    await sendEmail(parent.email, "New Money Request", `
+    Hi ${parent.name},
+
+    Please check ${child.name} just requested money-
+    The description is: ${request.message}
+    The amount asked is: ${request.amount}
+   
+    Best Regards,
+    WizeWallet
+   `)
     res.status(200).send({
       status: "Done",
       request: newRequest,

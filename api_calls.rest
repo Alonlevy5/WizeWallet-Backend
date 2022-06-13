@@ -46,7 +46,7 @@ Content-Type: application/json
 
 {
   "kidid": 123455,
-  "message": "Do your homework2",
+  "message": "Do your HW",
   "amount": 150
 }
 
@@ -60,7 +60,7 @@ Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaW
 Content-Type: application/json
 
 {
-  "_id": "62a7828f222cacba531018f5"
+  "_id": "62a785e1a57747c641aaeafa"
 }
 
 ###
@@ -240,7 +240,7 @@ Content-Type: application/json
 
 
 POST http://localhost:3000/request
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMTIsImlhdCI6MTY1NTA1MDAzOSwiZXhwIjoxNjU1MDUzNjM5fQ.ziUVR4kns17Z4MplxsJRomu4y7G_5ZsU8-vLvte_m0w
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjU1MTQ1MDM5LCJleHAiOjE2NTUxNDg2Mzl9.LfDmVtTg78_tMF9EzIYbWYelEDuKM9kkMZqkc5s72rM
 Content-Type: application/json
 
 {
