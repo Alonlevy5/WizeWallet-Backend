@@ -46,11 +46,7 @@ const taskCompleted = async (req, res, next) => {
     parent = await Parent.findById(task.sender)
     task.isCompleted = true;
     await task.save()
-    await sendEmail(parent.email, "Task completed", ```
-    Hi please check your kid just completed the task you gave him:
-    The description is: ${task.description}
-    The amount requested is ${task.amount} 
-    ```)
+    await sendEmail(parent.email, "Task completed", "Hi please check your kid just completed the task you gave him")
     res.status(200).send(task)
 
   } catch (err) {

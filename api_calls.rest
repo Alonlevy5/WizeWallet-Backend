@@ -41,7 +41,7 @@ Content-Type: application/json
 //-------------------  Add Tasks ------------------------
 
 POST http://localhost:3000/task
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjgyOGE2NTA3N2I1NmI1MWUwZGE3NzQiLCJpYXQiOjE2NTI5MDQxNDEsImV4cCI6MTY1MjkwNzc0MX0.8KUd6bhWz8JiyiOHB1iDooJ_l7R7eOvL4MZGWxr67Cg
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE3NzZlMWYxY2Y5MmY3ZDRjN2NmNWMiLCJpYXQiOjE2NTUxNDUwODksImV4cCI6MTY1NTE0ODY4OX0.Xs5YCrkzU_P90FZ6b70RUEV6ww7EpjHm7gUVpTOyxKE
 Content-Type: application/json
 
 {
@@ -56,11 +56,11 @@ Content-Type: application/json
 //-------------------  Need to pass TASK ID FROM GET TASKS AND TOKEN ------------------------
 
 POST http://localhost:3000/task/completed
-Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMTIsImlhdCI6MTY1NTA1MDAzOSwiZXhwIjoxNjU1MDUzNjM5fQ.ziUVR4kns17Z4MplxsJRomu4y7G_5ZsU8-vLvte_m0w
+Authorization: barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEyMzQ1NiwiaWF0IjoxNjU1MTQ1MDM5LCJleHAiOjE2NTUxNDg2Mzl9.LfDmVtTg78_tMF9EzIYbWYelEDuKM9kkMZqkc5s72rM
 Content-Type: application/json
 
 {
-  "_id": "6298edee8d16a0cfc32c1e39"
+  "_id": "62a7828f222cacba531018f5"
 }
 
 ###
@@ -172,9 +172,9 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "is_child": true,
-    "email": "1@gmail.com",
-    "password": "12345"
+    "is_child": false,
+    "email": "alonlevy5@gmail.com",
+    "password": "1"
 }
 
 
